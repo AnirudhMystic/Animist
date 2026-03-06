@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON LUMIÈRE — Parisian Haute Couture</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--noir:#0a0806;--creme:#f5f0e8;--or:#c9a96e;--or-light:#e8d5a3;--rouge:#8b1a1a;--gris:#1e1a17;--gris2:#2a2520;--gris-light:#6b6259;--chat-bg:#141008;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--noir);color:var(--creme);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+
+/* ── CURSOR ── */
+.cursor{width:7px;height:7px;background:var(--or);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.cursor-ring{width:30px;height:30px;border:1px solid rgba(201,169,110,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .22s ease;}
+
+/* ── LANG FLOAT ── */
+.lang-float{position:fixed;left:22px;bottom:36px;z-index:800;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.lang-float-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--or);opacity:.6;}
+.lang-switcher{display:flex;flex-direction:column;border:1.5px solid var(--or);border-radius:4px;overflow:hidden;box-shadow:0 4px 28px rgba(0,0,0,.7),0 0 0 4px rgba(201,169,110,.07);}
+.lang-btn{padding:9px 16px;font-size:12px;letter-spacing:3px;text-transform:uppercase;background:rgba(10,8,6,.97);border:none;color:var(--creme);cursor:none;opacity:.5;transition:all .3s;font-family:'Jost',sans-serif;font-weight:400;display:flex;align-items:center;gap:7px;justify-content:center;}
+.lang-btn.active{background:var(--or);color:var(--noir);opacity:1;font-weight:600;}
+.lang-btn:not(.active):hover{opacity:.85;background:rgba(201,169,110,.12);}
+.lang-divider{width:100%;height:1px;background:rgba(201,169,110,.35);}
+.lang-flag{font-size:15px;}
+
+/* ── HEADER ── */
+header{position:fixed;top:0;width:100%;z-index:500;padding:18px 50px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(10,8,6,.96) 0%,transparent 100%);border-bottom:1px solid rgba(201,169,110,.13);backdrop-filter:blur(10px);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:300;letter-spacing:6px;color:var(--or);text-transform:uppercase;}
+.logo span{font-style:italic;font-weight:600;}
+nav{display:flex;gap:32px;}
+nav a{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--creme);text-decoration:none;opacity:.65;transition:opacity .3s,color .3s;position:relative;}
+nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--or);transition:width .4s ease;}
+nav a:hover{opacity:1;color:var(--or);}
+nav a:hover::after{width:100%;}
+.header-right{display:flex;gap:18px;align-items:center;}
+.icon-btn{background:none;border:none;cursor:none;color:var(--creme);font-size:17px;opacity:.65;transition:opacity .3s,color .3s;position:relative;}
+.icon-btn:hover{opacity:1;color:var(--or);}
+.cart-count{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;background:var(--rouge);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.cart-count.visible{opacity:1;}
+
+/* ── HERO ── */
+.hero{height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(139,26,26,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(201,169,110,.08) 0%,transparent 50%),linear-gradient(135deg,#0a0806 0%,#150f0a 50%,#0a0806 100%);}
+.hero-grain{position:absolute;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;}
+.hero-vline{position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(180deg,transparent 0%,rgba(201,169,110,.25) 40%,rgba(201,169,110,.08) 70%,transparent 100%);}
+.hero-content{position:relative;z-index:2;padding:0 50px;max-width:680px;animation:fadeUp 1.2s ease both;}
+.hero-eyebrow{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--or);margin-bottom:22px;display:flex;align-items:center;gap:14px;}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--or);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6.5vw,92px);font-weight:300;line-height:1.0;margin-bottom:28px;}
+.hero-title em{font-style:italic;color:var(--or);}
+.hero-subtitle{font-size:13px;line-height:1.85;opacity:.58;max-width:400px;margin-bottom:44px;letter-spacing:.4px;}
+.hero-cta{display:inline-flex;align-items:center;gap:14px;padding:13px 32px;border:1px solid var(--or);color:var(--or);text-decoration:none;font-size:10px;letter-spacing:4px;text-transform:uppercase;cursor:none;transition:all .4s ease;position:relative;overflow:hidden;}
+.hero-cta::before{content:'';position:absolute;inset:0;background:var(--or);transform:translateX(-101%);transition:transform .4s ease;}
+.hero-cta:hover{color:var(--noir);}
+.hero-cta:hover::before{transform:translateX(0);}
+.hero-cta span{position:relative;z-index:1;}
+.hero-scroll{position:absolute;bottom:36px;left:50px;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--or);opacity:.45;display:flex;align-items:center;gap:10px;animation:fadeUp 1.8s ease both;}
+.hero-scroll::after{content:'';width:1px;height:38px;background:var(--or);opacity:.45;animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{transform:scaleY(1);opacity:.45}50%{transform:scaleY(.5);opacity:.9}}
+
+/* ── MARQUEE ── */
+.marquee-wrap{background:var(--or);padding:11px 0;overflow:hidden;}
+.marquee-track{display:flex;animation:marquee 28s linear infinite;white-space:nowrap;}
+.marquee-item{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--noir);padding:0 28px;display:flex;align-items:center;gap:28px;}
+.marquee-item::after{content:'✦';font-size:7px;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTION HEADERS ── */
+.section-header{text-align:center;padding:72px 50px 52px;}
+.section-eyebrow{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--or);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:14px;}
+.section-eyebrow::before,.section-eyebrow::after{content:'';width:36px;height:1px;background:var(--or);opacity:.45;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.8vw,52px);font-weight:300;}
+.section-title em{font-style:italic;color:var(--or);}
+
+/* ── PRODUCTS ── */
+.products-section{padding:16px 50px 90px;}
+.products-filter{display:flex;gap:7px;justify-content:center;margin-bottom:52px;flex-wrap:wrap;}
+.filter-btn{padding:7px 22px;font-size:9px;letter-spacing:3px;text-transform:uppercase;border:1px solid rgba(201,169,110,.28);background:none;color:var(--creme);cursor:none;transition:all .3s ease;}
+.filter-btn.active,.filter-btn:hover{background:var(--or);color:var(--noir);border-color:var(--or);}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:3px;}
+
+/* ── PRODUCT CARD ── */
+.product-card{position:relative;overflow:hidden;cursor:none;background:var(--gris);animation:fadeUp .6s ease both;}
+.product-card:hover .pcard-img{transform:scale(1.06);}
+.product-card:hover .product-overlay{opacity:1;}
+.pcard-wrap{aspect-ratio:3/4;overflow:hidden;position:relative;background:linear-gradient(160deg,#1c1610 0%,#0f0b08 100%);}
+.pcard-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .65s cubic-bezier(.25,.46,.45,.94);position:relative;}
+.product-overlay{position:absolute;inset:0;background:rgba(10,8,6,.72);opacity:0;transition:opacity .4s ease;display:flex;align-items:center;justify-content:center;}
+.product-overlay-btn{padding:11px 26px;border:1px solid var(--or);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--or);cursor:none;background:none;transition:all .3s;}
+.product-overlay-btn:hover{background:var(--or);color:var(--noir);}
+.product-tag{position:absolute;top:14px;left:14px;font-size:8px;letter-spacing:3px;text-transform:uppercase;background:var(--rouge);color:var(--creme);padding:4px 9px;z-index:2;}
+.product-info{padding:18px 20px;}
+.product-brand{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:5px;opacity:.7;}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;margin-bottom:7px;}
+.product-price{font-size:13px;color:var(--or-light);letter-spacing:1px;}
+.product-price s{opacity:.38;font-size:11px;margin-right:7px;}
+
+/* ── REALISTIC PRODUCT ILLUSTRATIONS (SVG-based CSS) ── */
+/* Versace Tote */
+.bag-versace{width:130px;height:130px;position:relative;}
+.bag-versace svg{width:100%;height:100%;}
+/* YSL College */
+.bag-ysl{width:130px;height:115px;position:relative;}
+/* Birkin */
+.bag-birkin{width:140px;height:125px;}
+/* GUESS mule */
+.shoe-guess{width:130px;height:90px;}
+/* Ralph Lauren pump */
+.shoe-rl{width:140px;height:95px;}
+/* YSL Opyum */
+.shoe-ysl{width:120px;height:120px;}
+/* Prada cardigan */
+.top-prada-cardi{width:120px;height:115px;}
+/* Prada sweater */
+.top-prada-sw{width:120px;height:115px;}
+/* Ralph Lauren cable */
+.top-rl{width:120px;height:115px;}
+
+/* ── COLLECTIONS ── */
+.collections-section{padding:0 0 90px;}
+.collections-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin:0 50px;}
+.collection-card{position:relative;overflow:hidden;cursor:none;background:var(--gris2);}
+.collection-visual{aspect-ratio:2/3;display:flex;align-items:flex-end;padding:28px;background:linear-gradient(180deg,transparent 40%,rgba(10,8,6,.88) 100%);position:relative;}
+.collection-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:58px;opacity:.55;transition:all .5s ease;}
+.collection-card:hover .collection-emoji{transform:translate(-50%,-65%) scale(1.1);opacity:.75;}
+.collection-info{position:relative;z-index:2;}
+.collection-season{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:7px;}
+.collection-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;line-height:1.1;}
+
+/* ── STORY ── */
+.story-section{padding:90px 50px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;border-top:1px solid rgba(201,169,110,.1);}
+.story-text .section-eyebrow{justify-content:flex-start;}
+.story-text .section-eyebrow::after{display:none;}
+.story-text .section-title{text-align:left;font-size:clamp(28px,3.2vw,44px);margin-bottom:24px;}
+.story-body{font-size:13px;line-height:1.95;opacity:.6;letter-spacing:.3px;}
+.story-quote{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:300;color:var(--or);line-height:1.55;margin:32px 0;padding-left:22px;border-left:1px solid var(--or);}
+.story-frame{width:300px;height:400px;border:1px solid rgba(201,169,110,.18);position:relative;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#150f0a,#0a0806);font-size:90px;overflow:hidden;}
+.story-frame::before{content:'';position:absolute;inset:11px;border:1px solid rgba(201,169,110,.08);}
+.story-frame-accent{position:absolute;top:-18px;right:-18px;width:90px;height:90px;border-right:1px solid var(--or);border-top:1px solid var(--or);opacity:.25;}
+.story-frame-accent2{position:absolute;bottom:-18px;left:-18px;width:90px;height:90px;border-left:1px solid var(--or);border-bottom:1px solid var(--or);opacity:.25;}
+
+/* ── NEWSLETTER ── */
+.newsletter-section{padding:72px 50px;text-align:center;border-top:1px solid rgba(201,169,110,.1);background:linear-gradient(135deg,rgba(201,169,110,.025) 0%,transparent 50%);}
+.newsletter-form{display:flex;gap:0;max-width:440px;margin:36px auto 0;}
+.newsletter-input{flex:1;background:rgba(201,169,110,.055);border:1px solid rgba(201,169,110,.22);border-right:none;color:var(--creme);padding:13px 18px;font-family:'Jost',sans-serif;font-size:12px;font-weight:300;letter-spacing:.5px;outline:none;}
+.newsletter-input::placeholder{color:rgba(245,240,232,.28);}
+.newsletter-btn{padding:13px 26px;background:var(--or);border:1px solid var(--or);color:var(--noir);font-family:'Jost',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;cursor:none;transition:all .3s;}
+.newsletter-btn:hover{background:var(--or-light);}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid rgba(201,169,110,.1);padding:52px 50px 36px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;letter-spacing:4px;color:var(--or);margin-bottom:14px;}
+.footer-logo span{font-style:italic;}
+.footer-desc{font-size:12px;opacity:.45;line-height:1.75;max-width:240px;}
+.footer-col h4{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:18px;}
+.footer-col a{display:block;color:var(--creme);text-decoration:none;font-size:12px;opacity:.45;margin-bottom:9px;transition:opacity .3s;}
+.footer-col a:hover{opacity:1;}
+.footer-bottom{border-top:1px solid rgba(201,169,110,.1);padding-top:26px;display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:10px;opacity:.3;letter-spacing:2px;}
+.footer-socials{display:flex;gap:18px;}
+.footer-socials a{color:var(--creme);opacity:.3;text-decoration:none;font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:opacity .3s,color .3s;}
+.footer-socials a:hover{opacity:.8;color:var(--or);}
+
+/* ── CHATBOT TRIGGER ── */
+.chatbot-trigger{position:fixed;bottom:36px;right:36px;z-index:700;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:none;}
+.chatbot-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--or);opacity:0;transition:opacity .4s;white-space:nowrap;}
+.chatbot-trigger:hover .chatbot-label{opacity:1;}
+.chatbot-avatar{width:68px;height:68px;border-radius:50%;border:2px solid var(--or);background:linear-gradient(135deg,#1a1510,#2a1f18);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 0 0 6px rgba(201,169,110,.09),0 8px 30px rgba(0,0,0,.55);transition:all .4s ease;animation:pulse-av 3s ease-in-out infinite;position:relative;}
+.chatbot-avatar::after{content:'';position:absolute;top:4px;right:4px;width:11px;height:11px;border-radius:50%;background:#4CAF50;border:2px solid var(--noir);}
+@keyframes pulse-av{0%,100%{box-shadow:0 0 0 6px rgba(201,169,110,.09),0 8px 30px rgba(0,0,0,.55)}50%{box-shadow:0 0 0 12px rgba(201,169,110,.04),0 8px 30px rgba(0,0,0,.55)}}
+.chatbot-trigger:hover .chatbot-avatar{transform:scale(1.07);}
+
+/* ── CHAT WINDOW ── */
+.chat-window{position:fixed;bottom:125px;right:36px;z-index:699;width:390px;background:var(--chat-bg);border:1px solid rgba(201,169,110,.18);box-shadow:0 24px 80px rgba(0,0,0,.85),inset 0 1px 0 rgba(201,169,110,.08);display:flex;flex-direction:column;transform:translateY(18px) scale(.95);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.34,1.56,.64,1);border-radius:3px;max-height:620px;}
+.chat-window.open{opacity:1;pointer-events:all;transform:translateY(0) scale(1);}
+.chat-header{padding:18px 22px;border-bottom:1px solid rgba(201,169,110,.13);background:linear-gradient(135deg,#1a1208,#0f0b06);display:flex;align-items:center;gap:13px;position:relative;flex-shrink:0;}
+.chat-header::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);}
+.chat-av-sm{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--or);background:linear-gradient(135deg,#2a1f18,#1a1510);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.chat-header-info h3{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;margin-bottom:1px;}
+.chat-header-info p{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--or);opacity:.65;}
+.chat-close{margin-left:auto;background:none;border:none;color:var(--creme);opacity:.35;cursor:none;font-size:17px;transition:opacity .3s;}
+.chat-close:hover{opacity:1;}
+
+/* ── MODEL DISPLAY ── */
+.model-display{background:linear-gradient(180deg,#130e08 0%,#0a0806 100%);padding:20px;text-align:center;border-bottom:1px solid rgba(201,169,110,.09);position:relative;overflow:hidden;flex-shrink:0;}
+.model-display::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,169,110,.05) 0%,transparent 70%);}
+.model-figure{position:relative;z-index:1;display:flex;gap:16px;align-items:center;justify-content:center;}
+.model-avatar-area{display:flex;flex-direction:column;align-items:center;gap:3px;}
+/* Isabelle avatar — realistic CSS illustration */
+.isabelle-figure{width:80px;height:130px;position:relative;flex-shrink:0;}
+.isabelle-figure svg{width:100%;height:100%;}
+.model-outfit-info{flex:1;text-align:left;}
+.model-name-tag{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--or);font-style:italic;margin-bottom:3px;}
+.outfit-badge{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gris-light);margin-bottom:10px;transition:all .5s ease;}
+.outfit-items{display:flex;flex-direction:column;gap:4px;}
+.outfit-item-row{display:flex;align-items:center;gap:7px;font-size:10px;opacity:.7;letter-spacing:.5px;}
+.outfit-item-row .item-icon{font-size:13px;width:18px;text-align:center;}
+.outfit-item-row .item-label{opacity:.5;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-right:4px;}
+
+/* ── MESSAGES ── */
+.chat-messages{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:14px;min-height:100px;max-height:180px;}
+.chat-messages::-webkit-scrollbar{width:3px;}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(201,169,110,.25);border-radius:2px;}
+.msg{display:flex;gap:9px;align-items:flex-start;animation:msgIn .3s ease both;}
+.msg.user{flex-direction:row-reverse;}
+@keyframes msgIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.msg-av{width:26px;height:26px;border-radius:50%;border:1px solid rgba(201,169,110,.28);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:linear-gradient(135deg,#1a1510,#0f0b08);}
+.msg-bubble{max-width:80%;padding:9px 13px;font-size:11.5px;line-height:1.65;letter-spacing:.25px;border-radius:2px;}
+.msg.ai .msg-bubble{background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.13);color:var(--creme);border-top-left-radius:0;}
+.msg.user .msg-bubble{background:rgba(201,169,110,.14);border:1px solid rgba(201,169,110,.22);color:var(--creme);border-top-right-radius:0;}
+.typing-indicator{display:flex;gap:4px;padding:12px 16px;background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.13);width:fit-content;border-radius:2px;}
+.typing-dot{width:4px;height:4px;border-radius:50%;background:var(--or);opacity:.4;animation:typDot 1.2s ease-in-out infinite;}
+.typing-dot:nth-child(2){animation-delay:.2s}.typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes typDot{0%,60%,100%{opacity:.4;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+/* ── QUICK REPLIES ── */
+.quick-replies{padding:0 16px 10px;display:flex;flex-wrap:wrap;gap:5px;flex-shrink:0;}
+.quick-reply{padding:4px 11px;font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(201,169,110,.28);color:var(--or);background:none;cursor:none;border-radius:20px;transition:all .3s;}
+.quick-reply:hover{background:rgba(201,169,110,.13);border-color:var(--or);}
+
+/* ── CHAT INPUT ── */
+.chat-input-area{padding:14px 18px;border-top:1px solid rgba(201,169,110,.09);display:flex;gap:9px;align-items:center;background:rgba(0,0,0,.3);flex-shrink:0;}
+.chat-input{flex:1;background:rgba(201,169,110,.055);border:1px solid rgba(201,169,110,.18);color:var(--creme);padding:9px 13px;font-family:'Jost',sans-serif;font-size:11px;font-weight:300;letter-spacing:.4px;outline:none;border-radius:2px;transition:border-color .3s;}
+.chat-input::placeholder{color:rgba(245,240,232,.28);}
+.chat-input:focus{border-color:var(--or);}
+.chat-send{width:34px;height:34px;background:var(--or);border:none;color:var(--noir);cursor:none;border-radius:2px;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;}
+.chat-send:hover{background:var(--or-light);transform:scale(1.05);}
+
+/* ── CART ── */
+.cart-overlay{position:fixed;inset:0;background:rgba(10,8,6,.7);z-index:750;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(4px);}
+.cart-overlay.open{opacity:1;pointer-events:all;}
+.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:390px;background:var(--chat-bg);border-left:1px solid rgba(201,169,110,.18);z-index:751;transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;}
+.cart-drawer.open{transform:translateX(0);}
+.cart-drawer-header{padding:26px 26px 18px;border-bottom:1px solid rgba(201,169,110,.13);display:flex;justify-content:space-between;align-items:center;}
+.cart-drawer-header h2{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:300;letter-spacing:3px;}
+.cart-items-el{flex:1;overflow-y:auto;padding:18px 26px;}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(201,169,110,.09);}
+.cart-item-visual{width:60px;height:75px;background:linear-gradient(135deg,#1a1510,#0f0b08);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(201,169,110,.09);}
+.cart-item-info{flex:1;}
+.cart-item-brand{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--or);margin-bottom:3px;}
+.cart-item-name{font-family:'Cormorant Garamond',serif;font-size:14px;margin-bottom:5px;}
+.cart-item-price{font-size:12px;color:var(--or-light);}
+.cart-item-remove{background:none;border:none;color:var(--creme);opacity:.25;cursor:none;font-size:15px;transition:opacity .3s;align-self:flex-start;margin-top:3px;}
+.cart-item-remove:hover{opacity:.8;}
+.cart-footer{padding:22px 26px;border-top:1px solid rgba(201,169,110,.13);}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:18px;}
+.cart-total-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;opacity:.55;}
+.cart-total-price{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--or);}
+.checkout-btn{width:100%;padding:15px;background:var(--or);border:none;color:var(--noir);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;cursor:none;transition:all .3s;}
+.checkout-btn:hover{background:var(--or-light);}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:120px;left:50%;transform:translateX(-50%) translateY(18px);background:rgba(201,169,110,.95);color:var(--noir);padding:11px 22px;font-size:10px;letter-spacing:3px;text-transform:uppercase;z-index:850;opacity:0;pointer-events:none;transition:all .4s ease;border-radius:2px;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="toast" id="toast"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Maison <span>Lumière</span></div>
+  <nav>
+    <a href="#" data-i18n="nav_collections">Collections</a>
+    <a href="#" data-i18n="nav_couture">Couture</a>
+    <a href="#" data-i18n="nav_accessories">Accessoires</a>
+    <a href="#" data-i18n="nav_beauty">Beauté</a>
+    <a href="#" data-i18n="nav_home">Maison</a>
+  </nav>
+  <div class="header-right">
+    <button class="icon-btn" title="Search">⌕</button>
+    <button class="icon-btn" id="cartBtn">🤍<span class="cart-count" id="cartCount">0</span></button>
+    <button class="icon-btn">◈</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div><div class="hero-grain"></div><div class="hero-vline"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Collection Printemps 2025</div>
+    <h1 class="hero-title" data-i18n="hero_title_html"></h1>
+    <p class="hero-subtitle" data-i18n="hero_subtitle"></p>
+    <a href="#products" class="hero-cta"><span data-i18n="hero_cta">Explorer</span><span>→</span></a>
+  </div>
+  <div class="hero-scroll" data-i18n="hero_scroll">Défiler</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <div class="section-eyebrow" data-i18n="products_eyebrow">Notre Sélection</div>
+    <h2 class="section-title" data-i18n="products_title_html"></h2>
+  </div>
+  <div class="products-section">
+    <div class="products-filter" id="filterBar"></div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="collections-section">
+  <div class="section-header">
+    <div class="section-eyebrow" data-i18n="coll_eyebrow">Nos Univers</div>
+    <h2 class="section-title" data-i18n="coll_title_html"></h2>
+  </div>
+  <div class="collections-grid">
+    <div class="collection-card"><div class="collection-visual" style="background:linear-gradient(180deg,#0a0806,#1a1510 50%,#0a0806)"><div class="collection-emoji">🌹</div><div class="collection-info"><div class="collection-season">SS 2025</div><div class="collection-name" data-i18n="coll1_name">Jardin<br>de Paris</div></div></div></div>
+    <div class="collection-card"><div class="collection-visual" style="background:linear-gradient(180deg,#0a0806,#1a0a0a 50%,#0a0806)"><div class="collection-emoji">🥀</div><div class="collection-info"><div class="collection-season">AW 2025</div><div class="collection-name" data-i18n="coll2_name">Nuit<br>Étoilée</div></div></div></div>
+    <div class="collection-card"><div class="collection-visual" style="background:linear-gradient(180deg,#0a0806,#0f1018 50%,#0a0806)"><div class="collection-emoji">💎</div><div class="collection-info"><div class="collection-season">Resort 2025</div><div class="collection-name" data-i18n="coll3_name">Riviera<br>Dorée</div></div></div></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story-section">
+  <div class="story-text">
+    <div class="section-eyebrow" data-i18n="story_eyebrow">Notre Histoire</div>
+    <h2 class="section-title" data-i18n="story_title_html"></h2>
+    <p class="story-body" data-i18n="story_body1"></p>
+    <div class="story-quote" data-i18n="story_quote">"La mode passe, le style reste." — Coco Chanel</div>
+    <p class="story-body" data-i18n="story_body2"></p>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;">
+    <div class="story-frame"><span>👗</span><div class="story-frame-accent"></div><div class="story-frame-accent2"></div></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="section-eyebrow" data-i18n="news_eyebrow">Restez Connectée</div>
+  <h2 class="section-title" data-i18n="news_title_html"></h2>
+  <p style="opacity:.48;font-size:12px;margin-top:10px;max-width:380px;margin-left:auto;margin-right:auto;line-height:1.75;" data-i18n="news_sub"></p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" data-i18n-placeholder="news_placeholder">
+    <button class="newsletter-btn" data-i18n="news_btn">S'inscrire</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div><div class="footer-logo">Maison <span>Lumière</span></div><p class="footer-desc" data-i18n="footer_desc"></p></div>
+    <div class="footer-col"><h4 data-i18n="footer_col1_title">Collections</h4><a href="#" data-i18n="nav_col1">Robes</a><a href="#" data-i18n="nav_col2">Accessoires</a><a href="#" data-i18n="nav_col3">Beauté</a><a href="#" data-i18n="nav_col4">Maison</a></div>
+    <div class="footer-col"><h4 data-i18n="footer_col2_title">Service</h4><a href="#" data-i18n="footer_delivery">Livraison</a><a href="#" data-i18n="footer_returns">Retours</a><a href="#" data-i18n="footer_sizing">Guide Tailles</a><a href="#" data-i18n="footer_contact">Contact</a></div>
+    <div class="footer-col"><h4 data-i18n="footer_col3_title">Maison</h4><a href="#" data-i18n="footer_story">Notre Histoire</a><a href="#" data-i18n="footer_atelier">Ateliers</a><a href="#" data-i18n="footer_press">Presse</a><a href="#" data-i18n="footer_careers">Carrières</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" data-i18n="footer_copy">© 2025 Maison Lumière. Paris.</span>
+    <div class="footer-socials"><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">TikTok</a></div>
+  </div>
+</footer>
+
+<!-- FLOATING LANG SWITCHER -->
+<div class="lang-float">
+  <span class="lang-float-label">Language</span>
+  <div class="lang-switcher">
+    <button class="lang-btn" id="btnEN" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span> EN</button>
+    <div class="lang-divider"></div>
+    <button class="lang-btn active" id="btnFR" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span> FR</button>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<div class="chatbot-trigger" id="chatbotTrigger">
+  <span class="chatbot-label" data-i18n="chat_label">Isabelle</span>
+  <div class="chatbot-avatar" id="chatbotAvatar">👩‍🦱</div>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-av-sm" id="chatAvSm">👩‍🦱</div>
+    <div class="chat-header-info"><h3>Isabelle Beaumont</h3><p data-i18n="chat_subtitle">Style Advisor · Paris</p></div>
+    <button class="chat-close" id="chatClose">✕</button>
+  </div>
+
+  <!-- MODEL DISPLAY -->
+  <div class="model-display">
+    <div class="model-figure">
+      <div class="model-avatar-area">
+        <!-- Realistic Isabelle SVG figure -->
+        <div class="isabelle-figure" id="isabelleFigure">
+          <svg viewBox="0 0 80 160" xmlns="http://www.w3.org/2000/svg" id="isabelleSVG">
+            <!-- Hair -->
+            <ellipse cx="40" cy="22" rx="18" ry="20" fill="#5c3d1e" id="svgHair"/>
+            <!-- Face -->
+            <ellipse cx="40" cy="28" rx="13" ry="15" fill="#f0c89a"/>
+            <!-- Eyes -->
+            <ellipse cx="35" cy="25" rx="2" ry="2.5" fill="#2c1810"/>
+            <ellipse cx="45" cy="25" rx="2" ry="2.5" fill="#2c1810"/>
+            <!-- Lips -->
+            <path d="M36 33 Q40 36 44 33" stroke="#c9607a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- Neck -->
+            <rect x="36" y="42" width="8" height="8" fill="#f0c89a" rx="1"/>
+            <!-- Body/outfit (changes) -->
+            <g id="svgOutfit">
+              <!-- Default: elegant dress -->
+              <path d="M22 50 Q40 44 58 50 L62 130 Q40 136 18 130 Z" fill="#1a1a2e" id="svgBody"/>
+              <path d="M22 50 Q40 44 58 50 L60 70 Q40 66 20 70 Z" fill="#c9a96e" id="svgTop"/>
+            </g>
+            <!-- Arms -->
+            <path d="M22 55 Q10 75 12 95" stroke="#f0c89a" stroke-width="6" fill="none" stroke-linecap="round" id="svgArmL"/>
+            <path d="M58 55 Q70 75 68 95" stroke="#f0c89a" stroke-width="6" fill="none" stroke-linecap="round" id="svgArmR"/>
+            <!-- Bag (accessory) -->
+            <rect x="62" y="85" width="14" height="18" rx="2" fill="#c9a96e" id="svgBag"/>
+            <path d="M64 85 Q69 78 74 85" stroke="#c9a96e" stroke-width="2" fill="none" id="svgBagHandle"/>
+            <!-- Legs -->
+            <rect x="30" y="128" width="9" height="22" rx="2" fill="#1a1a2e" id="svgLegL"/>
+            <rect x="41" y="128" width="9" height="22" rx="2" fill="#1a1a2e" id="svgLegR"/>
+            <!-- Shoes -->
+            <ellipse cx="34" cy="152" rx="8" ry="4" fill="#0a0806" id="svgShoeL"/>
+            <path d="M38 148 L46 142" stroke="#0a0806" stroke-width="3" stroke-linecap="round" id="svgHeelL"/>
+            <ellipse cx="46" cy="152" rx="8" ry="4" fill="#0a0806" id="svgShoeR"/>
+            <path d="M50 148 L58 142" stroke="#0a0806" stroke-width="3" stroke-linecap="round" id="svgHeelR"/>
+          </svg>
+        </div>
+      </div>
+      <div class="model-outfit-info">
+        <div class="model-name-tag">Isabelle</div>
+        <div class="outfit-badge" id="outfitBadge">Parisian Chic</div>
+        <div class="outfit-items" id="outfitItems">
+          <div class="outfit-item-row"><span class="item-icon">👗</span><span class="item-label">Top</span><span id="itemTop">Chanel Tweed Dress</span></div>
+          <div class="outfit-item-row"><span class="item-icon">👜</span><span class="item-label">Bag</span><span id="itemBag">YSL Envelope</span></div>
+          <div class="outfit-item-row"><span class="item-icon">👠</span><span class="item-label">Shoes</span><span id="itemShoes">Louboutin So Kate</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="quick-replies" id="quickReplies"></div>
+  <div class="chat-input-area">
+    <input class="chat-input" id="chatInput" type="text" autocomplete="off" data-i18n-placeholder="chat_placeholder">
+    <button class="chat-send" id="chatSendBtn">➤</button>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header"><h2 data-i18n="cart_title">Mon Panier</h2><button class="icon-btn" id="cartClose" style="font-size:19px;margin-left:auto;">✕</button></div>
+  <div class="cart-items-el" id="cartItemsEl"></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span class="cart-total-label" data-i18n="cart_total">Total</span><span class="cart-total-price" id="cartTotalPrice">€0</span></div>
+    <button class="checkout-btn" data-i18n="cart_checkout">Passer Commande</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════════════════════════
+const T = {
+fr:{
+  nav_collections:'Collections',nav_couture:'Couture',nav_accessories:'Accessoires',nav_beauty:'Beauté',nav_home:'Maison',
+  hero_eyebrow:'Collection Printemps 2025',
+  hero_title_html:`L'Art de<br>la <em>Mode</em><br>Française`,
+  hero_subtitle:"Découvrez l'élégance éternelle de Paris — où chaque point raconte une histoire, chaque silhouette murmure la romance.",
+  hero_cta:'Explorer la Collection',hero_scroll:'Défiler',
+  products_eyebrow:'Notre Sélection',products_title_html:'Pièces <em>Iconiques</em>',
+  filter_all:'Tout',filter_sacs:'Sacs',filter_chaussures:'Chaussures',filter_hauts:'Hauts',
+  add_to_cart:'Ajouter au Panier',
+  coll_eyebrow:'Nos Univers',coll_title_html:'Les <em>Collections</em>',
+  coll1_name:'Jardin<br>de Paris',coll2_name:'Nuit<br>Étoilée',coll3_name:'Riviera<br>Dorée',
+  story_eyebrow:'Notre Histoire',story_title_html:`L'Élégance est<br>une <em>Art de Vivre</em>`,
+  story_body1:"Fondée au cœur du Marais en 1974, Maison Lumière est née d'une vision : que la vraie élégance transcende les saisons, les tendances et le temps.",
+  story_quote:'"La mode passe, le style reste." — Coco Chanel',
+  story_body2:"Chaque pièce témoigne du savoir-faire incomparable de nos ateliers parisiens, où les maîtres couturiers tissent héritage et innovation.",
+  news_eyebrow:'Restez Connectée',news_title_html:`L'Exclusivité à<br><em>Votre Portée</em>`,
+  news_sub:"Abonnez-vous pour un accès anticipé aux nouvelles collections et événements privés.",
+  news_placeholder:'Votre adresse email',news_btn:"S'inscrire",
+  footer_desc:"Depuis 1974, créant l'élégance française depuis notre atelier du Marais, Paris.",
+  footer_col1_title:'Collections',footer_col2_title:'Service',footer_col3_title:'Maison',
+  nav_col1:'Robes',nav_col2:'Accessoires',nav_col3:'Beauté',nav_col4:'Maison',
+  footer_delivery:'Livraison',footer_returns:'Retours',footer_sizing:'Guide Tailles',footer_contact:'Contact',
+  footer_story:'Notre Histoire',footer_atelier:'Ateliers',footer_press:'Presse',footer_careers:'Carrières',
+  footer_copy:'© 2025 Maison Lumière. Tous droits réservés. Paris.',
+  cart_title:'Mon Panier',cart_total:'Total',cart_checkout:'Passer Commande',cart_empty:'Votre panier est vide',
+  toast_added:'ajouté au panier',chat_label:'Isabelle',chat_subtitle:'Conseillère Style · Paris',
+  chat_placeholder:'Demandez à Isabelle…',
+  qr1:'Sa Tenue ✨',qr2:'Tenue Soirée',qr3:'Look Casual',qr4:'Conseils Mode',qr5:'Pour un Date',qr6:'Pour le Bureau',
+  marquee:['Nouvelle Collection','Printemps–Été 2025','Paris · Milano · New York','Haute Couture','Livraison Mondiale']
+},
+en:{
+  nav_collections:'Collections',nav_couture:'Couture',nav_accessories:'Accessories',nav_beauty:'Beauty',nav_home:'Home',
+  hero_eyebrow:'Spring Collection 2025',
+  hero_title_html:`The Art of<br><em>French</em><br>Fashion`,
+  hero_subtitle:"Discover the eternal elegance of Paris — where every stitch tells a story and every silhouette whispers of romance.",
+  hero_cta:'Explore the Collection',hero_scroll:'Scroll',
+  products_eyebrow:'Our Selection',products_title_html:'<em>Iconic</em> Pieces',
+  filter_all:'All',filter_sacs:'Bags',filter_chaussures:'Shoes',filter_hauts:'Tops',
+  add_to_cart:'Add to Cart',
+  coll_eyebrow:'Our Worlds',coll_title_html:'The <em>Collections</em>',
+  coll1_name:'Garden<br>of Paris',coll2_name:'Starlit<br>Night',coll3_name:'Golden<br>Riviera',
+  story_eyebrow:'Our Story',story_title_html:`Elegance is<br>an <em>Art of Living</em>`,
+  story_body1:"Founded in the heart of Le Marais in 1974, Maison Lumière was born from a singular vision: that true elegance transcends seasons, trends, and time.",
+  story_quote:'"Fashion fades, only style remains." — Coco Chanel',
+  story_body2:"Each piece is a testament to the unparalleled savoir-faire of our Parisian ateliers, where master couturiers weave heritage and innovation.",
+  news_eyebrow:'Stay Connected',news_title_html:`Exclusivity at<br><em>Your Fingertips</em>`,
+  news_sub:"Subscribe for early access to new collections, private events, and atelier updates.",
+  news_placeholder:'Your email address',news_btn:'Subscribe',
+  footer_desc:"Since 1974, crafting French elegance from our atelier in Le Marais, Paris.",
+  footer_col1_title:'Collections',footer_col2_title:'Service',footer_col3_title:'Maison',
+  nav_col1:'Dresses',nav_col2:'Accessories',nav_col3:'Beauty',nav_col4:'Home',
+  footer_delivery:'Delivery',footer_returns:'Returns',footer_sizing:'Sizing Guide',footer_contact:'Contact',
+  footer_story:'Our Story',footer_atelier:'Ateliers',footer_press:'Press',footer_careers:'Careers',
+  footer_copy:'© 2025 Maison Lumière. All rights reserved. Paris.',
+  cart_title:'My Cart',cart_total:'Total',cart_checkout:'Checkout',cart_empty:'Your cart is empty',
+  toast_added:'added to cart',chat_label:'Isabelle',chat_subtitle:'Style Advisor · Paris',
+  chat_placeholder:'Ask Isabelle anything…',
+  qr1:'Her Outfit ✨',qr2:'Evening Look',qr3:'Casual Style',qr4:'Style Tips',qr5:'Date Night',qr6:'Office Look',
+  marquee:['New Collection','Spring–Summer 2025','Paris · Milano · New York','Haute Couture','Worldwide Delivery']
+}};
+
+// ═══════════════════════════════════════════════════════════
+// PRODUCTS — based on uploaded images
+// ═══════════════════════════════════════════════════════════
+const products = [
+  // BAGS (from images 1,2,3)
+  {
+    id:1, brand:'Versace', cat:'sacs',
+    name_fr:'Tote Canvas Medusa', name_en:'Medusa Canvas Tote',
+    price:'€1,450', old:'', tag_fr:'Nouveau', tag_en:'New',
+    svg: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- Handles -->
+      <path d="M35 28 Q35 8 50 8 Q65 8 65 28" stroke="#1a1a1a" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- Bag body -->
+      <rect x="14" y="28" width="92" height="76" rx="3" fill="#e8e0d0"/>
+      <!-- Texture lines -->
+      <line x1="14" y1="40" x2="106" y2="40" stroke="rgba(0,0,0,.06)" stroke-width="1"/>
+      <line x1="14" y1="52" x2="106" y2="52" stroke="rgba(0,0,0,.06)" stroke-width="1"/>
+      <line x1="14" y1="64" x2="106" y2="64" stroke="rgba(0,0,0,.06)" stroke-width="1"/>
+      <line x1="14" y1="76" x2="106" y2="76" stroke="rgba(0,0,0,.06)" stroke-width="1"/>
+      <!-- VERSACE text -->
+      <text x="60" y="96" text-anchor="middle" font-size="9" fill="rgba(0,0,0,.18)" font-family="serif" letter-spacing="4" font-weight="bold">VERSACE</text>
+      <!-- D-ring -->
+      <circle cx="30" cy="42" r="5" fill="none" stroke="#c9a96e" stroke-width="1.5"/>
+      <!-- Medusa medallion -->
+      <circle cx="62" cy="42" r="8" fill="#c9a96e"/>
+      <circle cx="62" cy="42" r="6" fill="#b8901a"/>
+      <text x="62" y="46" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">M</text>
+    </svg>`
+  },
+  {
+    id:2, brand:'Saint Laurent', cat:'sacs',
+    name_fr:'Sac College Matelassé Vert', name_en:'College Quilted Bag Forest',
+    price:'€1,890', old:'', tag_fr:'', tag_en:'',
+    svg: `<svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg">
+      <!-- Chain strap -->
+      <path d="M20 10 Q30 2 90 2 Q100 2 100 12" stroke="#c9a96e" stroke-width="2.5" fill="none"/>
+      <!-- Gold rings -->
+      <circle cx="20" cy="12" r="4" fill="none" stroke="#c9a96e" stroke-width="2"/>
+      <circle cx="100" cy="12" r="4" fill="none" stroke="#c9a96e" stroke-width="2"/>
+      <!-- Top handle -->
+      <path d="M44 16 Q60 8 76 16" stroke="#2d5a27" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Bag flap -->
+      <path d="M10 18 Q60 12 110 18 L110 58 Q60 52 10 58 Z" fill="#2d5a27"/>
+      <!-- Chevron quilting on flap -->
+      <path d="M10 38 L60 28 L110 38" stroke="rgba(255,255,255,.15)" stroke-width="1" fill="none"/>
+      <path d="M10 48 L60 38 L110 48" stroke="rgba(255,255,255,.15)" stroke-width="1" fill="none"/>
+      <path d="M10 28 L60 18 L110 28" stroke="rgba(255,255,255,.15)" stroke-width="1" fill="none"/>
+      <!-- YSL monogram -->
+      <rect x="48" y="44" width="24" height="18" fill="none"/>
+      <text x="60" y="56" text-anchor="middle" font-size="14" fill="#c9a96e" font-family="serif" font-weight="bold">YSL</text>
+      <!-- Bag bottom body -->
+      <rect x="10" y="57" width="100" height="38" rx="3" fill="#2a5423"/>
+      <!-- Stitching detail -->
+      <rect x="14" y="61" width="92" height="30" rx="2" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="3,3"/>
+    </svg>`
+  },
+  {
+    id:3, brand:'Hermès', cat:'sacs',
+    name_fr:'Birkin 30 Gold Togo', name_en:'Birkin 30 Gold Togo',
+    price:'€11,500', old:'', tag_fr:'Iconique', tag_en:'Iconic',
+    svg: `<svg viewBox="0 0 130 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- Handles -->
+      <path d="M38 30 Q38 10 50 10 Q60 6 70 10 Q82 10 82 30" stroke="#c17a2a" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <!-- Handle stitching -->
+      <path d="M40 30 Q40 14 50 12 Q60 9 70 12 Q80 14 80 30" stroke="rgba(255,255,255,.3)" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+      <!-- Bag body -->
+      <path d="M8 32 Q65 26 122 32 L118 100 Q65 106 12 100 Z" fill="#c17a2a"/>
+      <!-- Body stitching -->
+      <path d="M12 36 Q65 30 118 36 L114 96 Q65 102 16 96 Z" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Suede protection flap top -->
+      <path d="M30 30 Q65 26 100 30 L100 46 Q65 42 30 46 Z" fill="#d4c4a0"/>
+      <!-- Closure strap -->
+      <rect x="56" y="44" width="18" height="30" rx="2" fill="#b86a1a"/>
+      <!-- Turn-lock clasp -->
+      <rect x="58" y="54" width="14" height="12" rx="3" fill="#c9a96e"/>
+      <rect x="61" y="57" width="8" height="6" rx="1" fill="#b8901a"/>
+      <circle cx="65" cy="60" r="2" fill="#c9a96e"/>
+      <!-- Mini lock charm -->
+      <rect x="46" y="82" width="10" height="12" rx="2" fill="#c9a96e"/>
+      <path d="M48 82 Q51 76 54 82" stroke="#c9a96e" stroke-width="2" fill="none"/>
+      <!-- Clochette tag -->
+      <path d="M51 80 L51 72" stroke="#c17a2a" stroke-width="1.5"/>
+      <path d="M46 72 Q51 66 56 72 L56 80 L46 80 Z" fill="#c17a2a"/>
+    </svg>`
+  },
+  // SHOES (from images 4,5,6)
+  {
+    id:4, brand:'Guess', cat:'chaussures',
+    name_fr:'Mule Suède Noire', name_en:'Black Suede Mule',
+    price:'€185', old:'€220', tag_fr:'Solde', tag_en:'Sale',
+    svg: `<svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sole -->
+      <path d="M15 82 Q70 88 125 80 L125 86 Q70 94 15 88 Z" fill="#1a1a1a"/>
+      <!-- Heel -->
+      <path d="M105 82 Q112 60 110 42 Q109 36 106 38 Q104 40 105 60 L103 82 Z" fill="#1a1a1a"/>
+      <!-- Upper vamp -->
+      <path d="M15 82 Q40 70 80 68 Q100 67 110 72 L105 82 Q70 85 15 82 Z" fill="#2a2a2a"/>
+      <!-- Suede texture overlay -->
+      <path d="M20 80 Q45 70 82 68 Q100 67 108 72 L105 80 Q70 83 20 80 Z" fill="#333"/>
+      <!-- Logo badge on toe -->
+      <rect x="60" y="71" width="28" height="9" rx="2" fill="#1a1a1a" stroke="#c9a96e" stroke-width="0.5"/>
+      <text x="74" y="78" text-anchor="middle" font-size="5" fill="#c9a96e" font-family="sans-serif" letter-spacing="1">GUESS</text>
+      <!-- Open toe space -->
+      <path d="M15 78 Q25 72 30 74 L28 82 Q20 84 15 82 Z" fill="#0a0806"/>
+    </svg>`
+  },
+  {
+    id:5, brand:'Ralph Lauren', cat:'chaussures',
+    name_fr:'Escarpins Canvas Bicolores', name_en:'Bicolour Canvas Pumps',
+    price:'€320', old:'', tag_fr:'', tag_en:'',
+    svg: `<svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sole -->
+      <path d="M18 80 Q70 86 125 76 L126 82 Q70 92 17 86 Z" fill="#c17a2a"/>
+      <!-- Inner sole -->
+      <path d="M22 80 Q70 85 122 76 L123 78 Q70 83 22 82 Z" fill="#e8d5b0"/>
+      <!-- Heel (mid height) -->
+      <path d="M110 78 Q116 62 114 48 Q112 44 110 46 Q108 48 110 62 L108 78 Z" fill="#8b6914"/>
+      <!-- Canvas body -->
+      <path d="M18 80 Q50 72 90 70 Q108 69 115 74 L110 80 Q70 84 18 80 Z" fill="#e8e0cc"/>
+      <!-- Navy cap toe -->
+      <path d="M18 80 Q28 74 40 73 Q42 73 44 74 L42 80 Q30 82 18 80 Z" fill="#1a237e"/>
+      <!-- Canvas texture lines -->
+      <line x1="45" y1="71" x2="110" y2="70" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
+      <line x1="45" y1="74" x2="110" y2="73" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
+      <line x1="45" y1="77" x2="110" y2="76" stroke="rgba(0,0,0,.08)" stroke-width="1"/>
+      <!-- Navy binding edge -->
+      <path d="M44 73 Q100 68 115 73" stroke="#1a237e" stroke-width="1.5" fill="none"/>
+      <!-- Back counter -->
+      <path d="M110 72 Q120 68 122 76 L118 80 Q112 80 110 78 Z" fill="#c8c0ae"/>
+    </svg>`
+  },
+  {
+    id:6, brand:'Saint Laurent', cat:'chaussures',
+    name_fr:'Opyum 110 Verni Noir', name_en:'Opyum 110 Patent Black',
+    price:'€950', old:'', tag_fr:'Coup de cœur', tag_en:"Editor's Pick",
+    svg: `<svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sole platform front -->
+      <path d="M8 105 Q50 112 85 108 L85 115 Q50 120 8 112 Z" fill="#1a1a1a"/>
+      <!-- YSL LOGO HEEL — the signature feature -->
+      <g id="yslHeel" transform="translate(82,55)">
+        <!-- Y -->
+        <line x1="0" y1="0" x2="6" y2="12" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="12" y1="0" x2="6" y2="12" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="6" y1="12" x2="6" y2="22" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <!-- S -->
+        <path d="M15 4 Q22 0 24 8 Q26 14 18 17 Q12 20 14 26 Q16 32 24 30" stroke="#c9a96e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- L -->
+        <line x1="27" y1="2" x2="27" y2="28" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+        <line x1="27" y1="28" x2="38" y2="28" stroke="#c9a96e" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <!-- Heel column -->
+      <rect x="85" y="50" width="12" height="58" rx="2" fill="#2a2a2a"/>
+      <!-- Vamp strap -->
+      <path d="M8 105 Q40 96 80 92 Q88 91 95 96 L92 108 Q55 110 8 105 Z" fill="#1a1a1a"/>
+      <!-- Patent sheen -->
+      <path d="M20 102 Q50 96 78 93 L78 96 Q50 99 20 105 Z" fill="rgba(255,255,255,.06)"/>
+      <!-- Ankle strap -->
+      <path d="M86 80 Q105 74 110 80 Q112 84 110 88 Q100 92 86 88 Z" fill="#1a1a1a"/>
+      <rect x="95" y="74" width="6" height="10" rx="1" fill="#c9a96e"/>
+    </svg>`
+  },
+  // TOPS (from images 7,8,9)
+  {
+    id:7, brand:'Prada', cat:'hauts',
+    name_fr:'Cardigan Bicolore Noir/Blanc', name_en:'Bicolour Cardigan Black/White',
+    price:'€1,250', old:'', tag_fr:'Nouveau', tag_en:'New',
+    svg: `<svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+      <!-- Body -->
+      <path d="M20 40 Q60 34 100 40 L104 110 Q60 116 16 110 Z" fill="#1a1a1a"/>
+      <!-- White trim borders -->
+      <!-- Left front band -->
+      <rect x="16" y="38" width="10" height="72" rx="1" fill="#f0f0f0"/>
+      <!-- Right front band -->
+      <rect x="94" y="38" width="10" height="72" rx="1" fill="#f0f0f0"/>
+      <!-- Bottom hem white band -->
+      <path d="M16 103 Q60 109 104 103 L104 110 Q60 116 16 110 Z" fill="#f0f0f0"/>
+      <!-- V-neck -->
+      <path d="M26 38 Q60 60 94 38" stroke="#f0f0f0" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M26 38 Q60 58 94 38" stroke="#1a1a1a" stroke-width="4" fill="none"/>
+      <!-- Left sleeve -->
+      <path d="M20 42 Q4 55 8 82 Q10 90 16 90 L20 70 Z" fill="#1a1a1a"/>
+      <path d="M8 78 Q10 88 16 90" stroke="#f0f0f0" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- Right sleeve -->
+      <path d="M100 42 Q116 55 112 82 Q110 90 104 90 L100 70 Z" fill="#1a1a1a"/>
+      <path d="M112 78 Q110 88 104 90" stroke="#f0f0f0" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- White pocket left -->
+      <rect x="22" y="76" width="18" height="14" rx="1" fill="#f0f0f0"/>
+      <!-- White pocket right -->
+      <rect x="80" y="76" width="18" height="14" rx="1" fill="#f0f0f0"/>
+      <!-- Buttons -->
+      <circle cx="60" cy="50" r="3" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
+      <circle cx="60" cy="62" r="3" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
+      <circle cx="60" cy="74" r="3" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
+      <circle cx="60" cy="86" r="3" fill="#f0f0f0" stroke="#ccc" stroke-width="0.5"/>
+      <!-- PRADA logo -->
+      <text x="60" y="44" text-anchor="middle" font-size="6" fill="#f0f0f0" font-family="serif" letter-spacing="2">PRADA</text>
+    </svg>`
+  },
+  {
+    id:8, brand:'Prada', cat:'hauts',
+    name_fr:'Pull Crop Logo Intarsia Navy', name_en:'Intarsia Logo Crop Sweater Navy',
+    price:'€980', old:'', tag_fr:'Exclusif', tag_en:'Exclusive',
+    svg: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- Body -->
+      <path d="M18 40 Q60 34 102 40 L100 100 Q60 106 20 100 Z" fill="#1a237e"/>
+      <!-- Ribbed hem -->
+      <path d="M20 93 Q60 99 100 93 L100 100 Q60 106 20 100 Z" fill="#151a6e"/>
+      <line x1="20" y1="95" x2="100" y2="93" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+      <line x1="20" y1="97" x2="100" y2="95" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+      <!-- V neck -->
+      <path d="M30 40 Q60 58 90 40" stroke="#151a6e" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Left sleeve (short crop style) -->
+      <path d="M18 42 Q4 54 8 74 Q10 80 18 80 L22 60 Z" fill="#1a237e"/>
+      <!-- Right sleeve -->
+      <path d="M102 42 Q116 54 112 74 Q110 80 102 80 L98 60 Z" fill="#1a237e"/>
+      <!-- PRADA MILANO intarsia text -->
+      <text x="60" y="60" text-anchor="middle" font-size="9" fill="#f0f0f0" font-family="serif" font-weight="bold" letter-spacing="2">PRADA</text>
+      <text x="60" y="72" text-anchor="middle" font-size="6" fill="rgba(240,240,240,.7)" font-family="serif" letter-spacing="3">MILANO</text>
+      <!-- Crest emblem -->
+      <rect x="50" y="76" width="20" height="14" rx="2" fill="none" stroke="rgba(240,240,240,.4)" stroke-width="1"/>
+      <text x="60" y="86" text-anchor="middle" font-size="6" fill="rgba(240,240,240,.5)" font-family="serif">✦</text>
+    </svg>`
+  },
+  {
+    id:9, brand:'Ralph Lauren', cat:'hauts',
+    name_fr:'Cardigan Cable-Knit Navy RL', name_en:'Cable-Knit Cardigan Navy RL',
+    price:'€420', old:'€520', tag_fr:'Solde', tag_en:'Sale',
+    svg: `<svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+      <!-- Body -->
+      <path d="M18 38 Q60 32 102 38 L100 112 Q60 118 20 112 Z" fill="#1a237e"/>
+      <!-- Cable knit pattern -->
+      <g stroke="rgba(255,255,255,.12)" stroke-width="1" fill="none">
+        <path d="M30 42 Q34 50 30 58 Q26 66 30 74 Q34 82 30 90 Q26 98 30 106"/>
+        <path d="M38 42 Q42 50 38 58 Q34 66 38 74 Q42 82 38 90 Q34 98 38 106"/>
+        <path d="M50 42 Q54 50 50 58 Q46 66 50 74 Q54 82 50 90 Q46 98 50 106"/>
+        <path d="M60 42 Q64 50 60 58 Q56 66 60 74 Q64 82 60 90 Q56 98 60 106"/>
+        <path d="M70 42 Q74 50 70 58 Q66 66 70 74 Q74 82 70 90 Q66 98 70 106"/>
+        <path d="M82 42 Q86 50 82 58 Q78 66 82 74 Q86 82 82 90 Q78 98 82 106"/>
+        <path d="M90 42 Q94 50 90 58 Q86 66 90 74 Q94 82 90 90 Q86 98 90 106"/>
+      </g>
+      <!-- Button band -->
+      <rect x="53" y="38" width="14" height="74" rx="1" fill="#151a6e"/>
+      <!-- Buttons (gold) -->
+      <circle cx="60" cy="50" r="3.5" fill="#c9a96e"/>
+      <circle cx="60" cy="64" r="3.5" fill="#c9a96e"/>
+      <circle cx="60" cy="78" r="3.5" fill="#c9a96e"/>
+      <circle cx="60" cy="92" r="3.5" fill="#c9a96e"/>
+      <!-- Collar -->
+      <path d="M30 40 Q60 56 90 40" stroke="#151a6e" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <!-- Sleeves -->
+      <path d="M18 40 Q4 56 8 80 Q10 88 18 88 L22 62 Z" fill="#1a237e"/>
+      <path d="M102 40 Q116 56 112 80 Q110 88 102 88 L98 62 Z" fill="#1a237e"/>
+      <!-- Sleeve rib cuffs -->
+      <path d="M8 82 Q10 90 18 90" stroke="#151a6e" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M112 82 Q110 90 102 90" stroke="#151a6e" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- RL crest badge -->
+      <rect x="25" y="46" width="18" height="14" rx="1" fill="rgba(201,169,110,.2)" stroke="#c9a96e" stroke-width="0.8"/>
+      <text x="34" y="56" text-anchor="middle" font-size="7" fill="#c9a96e" font-family="serif" font-weight="bold">RL</text>
+    </svg>`
+  }
+];
+
+// ═══════════════════════════════════════════════════════════
+// ISABELLE OUTFIT SYSTEM — SVG-based realistic looks
+// ═══════════════════════════════════════════════════════════
+const outfits = {
+  default:{
+    badge_fr:'Chic Parisien', badge_en:'Parisian Chic',
+    hair:'#5c3d1e', hairStyle:'chignon',
+    bodyColor:'#1a1a2e', topColor:'#c9a96e', legColor:'#1a1a2e',
+    shoeColor:'#0a0806', bagColor:'#c9a96e', lipColor:'#c9607a',
+    items_fr:{top:'Robe Tweed Chanel', bag:'Clutch YSL Noir', shoes:'Louboutin So Kate Nude'},
+    items_en:{top:'Chanel Tweed Dress', bag:'YSL Black Clutch', shoes:'Louboutin So Kate Nude'},
+    desc_fr:`Bonjour chérie! 💋 Voici ma tenue d'aujourd'hui!\n\n💇‍♀️ Mes cheveux châtains sont remontés en chignon élégant avec quelques mèches folles — romantique mais raffiné.\n\n💄 Lèvres rouge profond Chanel, teint lumineux — l'essentiel.\n\n👗 Je porte une robe Chanel tweed champagne et or — col à bords effilochés, ceinturée par un ruban de soie crème. La coupe épouse parfaitement la silhouette.\n\n👜 Mon clutch envelope Saint Laurent en cuir noir avec fermoir dorée — discret mais luxueux.\n\n👠 Les escarpins Louboutin So Kate nude — 100mm de bonheur. Ils allongent la jambe à l'infini.\n\nC'est tout moi! 🌹`,
+    desc_en:`Hello chérie! 💋 Here's what I'm wearing today!\n\n💇‍♀️ My chestnut hair swept into an elegant chignon with a few romantic tendrils framing my face.\n\n💄 Deep red Chanel lips, luminous skin — the essentials.\n\n👗 A Chanel tweed dress in champagne and gold — frayed-edge collar, cinched with a cream silk ribbon. The cut follows the silhouette beautifully.\n\n👜 My Saint Laurent black leather envelope clutch with gold clasp — discreet but luxurious.\n\n👠 Louboutin So Kate nude pumps — 100mm of pure joy. They elongate the leg endlessly.\n\nC'est tout moi! 🌹`
+  },
+  date:{
+    badge_fr:'Soirée Romantique', badge_en:'Date Night',
+    hair:'#c4a25a', hairStyle:'waves',
+    bodyColor:'#8b1a1a', topColor:'#6b0e0e', legColor:'#8b1a1a',
+    shoeColor:'#1a1a1a', bagColor:'#c9a96e', lipColor:'#8b0000',
+    items_fr:{top:'Robe Midi Valentino Rouge', bag:'Pochette Cristal Judith Leiber', shoes:'YSL Opyum 110 Verni'},
+    items_en:{top:'Valentino Red Midi Dress', bag:'Judith Leiber Crystal Clutch', shoes:'YSL Opyum 110 Patent'},
+    desc_fr:`Oh là là, un date! Je dois être parfaite! 💕\n\n💇‍♀️ Cheveux blonds ondulés tombant librement sur les épaules — doux, sensuel, inoubliable.\n\n💄 Rouge à lèvres bordeaux intense et mascara volume — regard qui tue!\n\n👗 Une robe midi Valentino en soie rouge profond — décolleté en V subtil, dos légèrement ouvert. Elle porte une présence dans chaque pièce.\n\n👜 La pochette Judith Leiber en cristal doré — minuscule mais éblouissante. Elle tient: rouge à lèvres, carte, confiance.\n\n👠 Les sandales YSL Opyum 110 verni noir avec le talon signature YSL en or — absolu statement. 3 secondes pour avoir l'attention de toute la salle!\n\n✨ Parfum: Dior Hypnotic Poison — une traîne de mystère à chaque pas.`,
+    desc_en:`Oh là là, a date! I must be perfect! 💕\n\n💇‍♀️ Blonde waves falling freely over the shoulders — soft, sensual, unforgettable.\n\n💄 Deep bordeaux lips and volumising mascara — a look that kills!\n\n👗 A Valentino midi dress in deep red silk — subtle V-neckline, slightly open back. She commands every room she enters.\n\n👜 A Judith Leiber gold crystal minaudière — tiny but blinding. Holds: lipstick, card, and confidence.\n\n👠 YSL Opyum 110 patent black sandals with the signature YSL gold logo heel — an absolute statement. 3 seconds to own every room!\n\n✨ Perfume: Dior Hypnotic Poison — a trail of mystery with every step.`
+  },
+  office:{
+    badge_fr:'Tenue Bureau', badge_en:'Office Chic',
+    hair:'#3a2810', hairStyle:'sleek',
+    bodyColor:'#2d3748', topColor:'#1a1a2e', legColor:'#2d3748',
+    shoeColor:'#2c1a0e', bagColor:'#c17a2a', lipColor:'#8b4040',
+    items_fr:{top:'Cardigan Prada Bicolore + Pantalon Tailleur', bag:'Birkin Hermès Gold 30', shoes:'Escarpins RL Canvas Bicolores'},
+    items_en:{top:'Prada Bicolour Cardigan + Tailored Trousers', bag:'Hermès Birkin Gold 30', shoes:'RL Bicolour Canvas Pumps'},
+    desc_fr:`Le bureau, c'est ma scène! 👩‍💼✨\n\n💇‍♀️ Chignon bas impeccable, pas un cheveu qui dépasse — autorité et élégance.\n\n👗 Le cardigan Prada Milano bicolore noir et blanc avec un pantalon tailleur Sandro coupe droite. Net, précis, professionnel mais jamais ennuyeux.\n\n💼 Le Birkin Hermès Gold 30 togo avec quincaillerie dorée — la pièce qui dit tout sans dire un mot. C'est la définition du pouvoir discret.\n\n👠 Les escarpins Ralph Lauren canvas écru/marine bicolore — à la fois confortables pour une longue journée et impeccables pour une réunion de direction.\n\n💄 Lèvres rose nude, teint mat — image professionnelle parfaite.\n\nConseils bureau: choisissez une pièce statement (le sac ou la chaussure) et gardez le reste neutre. C'est ça la vraie autorité de style!`,
+    desc_en:`The office is my stage! 👩‍💼✨\n\n💇‍♀️ Sleek low chignon, not a hair out of place — authority and elegance.\n\n👗 The Prada Milano black and white bicolour cardigan with straight-cut Sandro tailored trousers. Clean, precise, professional but never boring.\n\n💼 The Hermès Birkin Gold 30 in togo leather with gold hardware — the piece that says everything without saying a word. This is the definition of quiet power.\n\n👠 Ralph Lauren bicolour canvas/navy pumps — both comfortable for a long day and impeccable for a board meeting.\n\n💄 Nude rose lips, matte finish — perfect professional image.\n\nOffice tip: choose ONE statement piece (the bag or the shoe) and keep the rest neutral. That's true style authority!`
+  },
+  casual:{
+    badge_fr:'Casual Français', badge_en:'French Casual',
+    hair:'#5c3d1e', hairStyle:'loose',
+    bodyColor:'#f5f0e8', topColor:'#e8e0cc', legColor:'#2d4a6e',
+    shoeColor:'#e8e0d0', bagColor:'#5c3d1e', lipColor:'#e88080',
+    items_fr:{top:'Top Marinière + Jean Taille Haute', bag:'Tote Versace Canvas', shoes:'Veja Esplar Blanc'},
+    items_en:{top:'Breton Stripe Top + High-Waist Jeans', bag:'Versace Canvas Tote', shoes:'Veja Esplar White'},
+    desc_fr:`Le look décontracté à la française — moins c'est plus! 🥐☕\n\n💇‍♀️ Cheveux détachés légèrement ondulés, foulard soie Hermès noué en bandeau — très Brigitte Bardot à Capri!\n\n👕 Un top marinière Agnès b. rayures bleues et blanches parfaitement oversize, rentré dans un jean taille haute Sandro en denim brut. Le duo classique parisien.\n\n👜 Le tote Versace canvas écru avec médaillon Medusa doré — le sac parfait pour les courses au marché avec une touche de luxe.\n\n👟 Sneakers Veja Esplar en cuir blanc — la chaussure signature de toute Parisienne. Confort + style + éco-responsable!\n\n💄 Lèvres teintées légères et joues rosées — le maquillage qui dit "je me suis levée comme ça"!\n\nLa règle d'or parisienne: jamais trop parfait, toujours nonchalant! 🥖`,
+    desc_en:`The French casual look — less is more! 🥐☕\n\n💇‍♀️ Loosely waved hair down, Hermès silk scarf tied as a headband — très Brigitte Bardot in Capri!\n\n👕 An Agnès b. blue-and-white Breton stripe top, perfectly oversized, tucked into raw-denim high-waist Sandro jeans. The classic Parisian duo.\n\n👜 The Versace ecru canvas tote with gold Medusa medallion — the perfect market bag with a touch of luxury.\n\n👟 Veja Esplar white leather sneakers — the signature shoe of every Parisienne. Comfort + style + eco-conscious!\n\n💄 Light tinted lips and rosy cheeks — the makeup that says "I woke up like this"!\n\nThe golden Parisian rule: never too perfect, always nonchalant! 🥖`
+  },
+  evening:{
+    badge_fr:'Grande Soirée', badge_en:'Gala Evening',
+    hair:'#c4a25a', hairStyle:'updo',
+    bodyColor:'#0d0d1a', topColor:'#c9a96e', legColor:'#0d0d1a',
+    shoeColor:'#c9a96e', bagColor:'#f5f0e8', lipColor:'#660000',
+    items_fr:{top:'Robe Longue Dior Bleu Nuit Brodée', bag:'Clutch Chanel Doré', shoes:'Sandales YSL Opyum Dorées'},
+    items_en:{top:'Dior Embroidered Navy Gown', bag:'Chanel Gold Clutch', shoes:'YSL Opyum Gold Sandals'},
+    desc_fr:`Pour le gala... je dois couper le souffle! ✨🥂\n\n💇‍♀️ Chignon sculptural avec des mèches folle tressées, orné d'épingles Chanel diamant — une vraie œuvre d'art capillaire.\n\n👗 Une robe longue Dior en crêpe bleu nuit avec broderies fil d'or au décolleté — chaque mouvement révèle une broderie différente. C'est la poésie portée.\n\n💎 Collier de diamants et pendants d'oreilles Cartier — minimalistes mais absolus.\n\n👝 Pochette Chanel en satin doré avec fermoir CC — elle tient une seule chose: mon rouge à lèvres. Parce qu'à une soirée, c'est tout ce dont j'ai besoin.\n\n👠 Sandales YSL Opyum dorées avec le talon monogramme — à chaque pas, le sol brille derrière moi.\n\n💄 Rouge à lèvres rouge profond Charlotte Tilbury "Glastonbury" + smoky eye intense.\n\nQuand on entre dans un gala, on doit avoir l'air d'y habiter. Voilà! 👑`,
+    desc_en:`For the gala... I must take every breath away! ✨🥂\n\n💇‍♀️ Sculptural chignon with braided wild strands, adorned with Chanel diamond hairpins — true hair art.\n\n👗 A Dior midnight navy crêpe gown with gold thread embroidery at the neckline — every movement reveals a new detail. It's wearable poetry.\n\n💎 Diamond necklace and Cartier drop earrings — minimal but absolute.\n\n👝 Chanel gold satin clutch with CC clasp — it holds one thing: my lipstick. At a gala, that's all I need.\n\n👠 YSL Opyum gold sandals with monogram heel — with every step, the floor glows behind me.\n\n💄 Charlotte Tilbury "Glastonbury" deep red lip + intense smoky eye.\n\nWhen you enter a gala, you must look like you belong there. Voilà! 👑`
+  },
+  street:{
+    badge_fr:'Street Style Marais', badge_en:'Marais Street Style',
+    hair:'#8b3a1a', hairStyle:'loose',
+    bodyColor:'#c17a2a', topColor:'#8b4a1a', legColor:'#2a2520',
+    shoeColor:'#c8c0ae', bagColor:'#1a4a1a', lipColor:'#c96060',
+    items_fr:{top:'Robe Rouje Terracotta Midi', bag:'Tote Ami Paris Camel', shoes:'Ballerines Sézane Beige'},
+    items_en:{top:'Rouje Terracotta Midi Dress', bag:'Ami Paris Camel Tote', shoes:'Sézane Beige Ballet Flats'},
+    desc_fr:`Le Marais, mon terrain de jeu! 🗼🧡\n\n💇‍♀️ Boucles auburn lâchées et sauvages — pas de sèche-cheveux, juste du sel de mer et beaucoup de confiance.\n\n👗 La robe midi Rouje en terracotta avec manches bouffantes délicates — le print floral délicat ajoute cette touche poétique. Parfaite pour flâner des Galeries Saint-Martin aux cafés du Marais.\n\n👜 Le tote Ami Paris en cuir camel grand format — j'y mets ma baguette, mon carnet, un roman de Duras, et mon extra rouge à lèvres. La vie parisienne condensée!\n\n🥿 Ballerines Sézane en cuir beige — la vraie chaussure de la Parisienne moderne. Confort pour 10 000 pas sur pavés, classe pour le dîner spontané.\n\n💄 Joues légèrement ensoleillées, lèvres corail — comme si j'arrivais d'une terrasse ensoleillée!\n\nParis n'est pas une ville, c'est une façon d'exister! ☕🌹`,
+    desc_en:`Le Marais is my playground! 🗼🧡\n\n💇‍♀️ Auburn curls loose and wild — no blow dryer, just sea salt and a lot of confidence.\n\n👗 The Rouje terracotta midi with delicate puff sleeves — the subtle floral print adds that poetic touch. Perfect for wandering from Galeries Saint-Martin to the Marais cafés.\n\n👜 The large-format Ami Paris camel leather tote — inside: a baguette, my notebook, a Duras novel, and spare lipstick. Parisian life, condensed!\n\n🥿 Sézane beige leather ballet flats — the true shoe of the modern Parisienne. Comfort for 10,000 steps on cobblestones, chic enough for a spontaneous dinner.\n\n💄 Lightly sun-kissed cheeks, coral lips — as if I just arrived from a sunny terrace!\n\nParis isn't a city, it's a way of existing! ☕🌹`
+  },
+  sporty:{
+    badge_fr:'Sport Chic', badge_en:'Athletic Chic',
+    hair:'#3a2810', hairStyle:'pony',
+    bodyColor:'#e8e0d8', topColor:'#d4ccc4', legColor:'#d4ccc4',
+    shoeColor:'#f0ece4', bagColor:'#1a1a1a', lipColor:'#d4906a',
+    items_fr:{top:'Set Alo Yoga Gris Perle', bag:'Sac Puzzle Mini Loewe', shoes:'New Balance 550 Crème/Or'},
+    items_en:{top:'Alo Yoga Pearl Grey Set', bag:'Loewe Puzzle Mini Bag', shoes:'New Balance 550 Cream/Gold'},
+    desc_fr:`Même au sport, je suis chic — c'est une question d'honneur! 💪✨\n\n💇‍♀️ Queue de cheval haute et lisse, sans un cheveu hors de place. Deux coups de mascara waterproof, baume teinté — ça suffit!\n\n🎽 Set Alo Yoga en gris perle — brassière crop top et legging taille haute en tissu cloud. Doux comme un nuage, galbe comme un rêve. C'est mon uniforme Pilates.\n\n👝 Le mini sac Puzzle Loewe en cuir noir — parce que même à la salle, j'ai besoin d'un beau sac. Ça contient mon téléphone, mes clés et ma fierté.\n\n👟 New Balance 550 en crème et or — la sneaker it-shoe du moment à Paris. Toutes les Parisiennes en ont une paire (ou trois).\n\nConseils sport chic: investissez dans la qualité des matières — ça se voit immédiatement. Et toujours un accessoire luxe pour élever l'ensemble! 🌟`,
+    desc_en:`Even at the gym, I'm chic — it's a matter of honour! 💪✨\n\n💇‍♀️ Sleek high ponytail, not a hair out of place. Two coats of waterproof mascara, tinted lip balm — that's enough!\n\n🎽 Alo Yoga pearl grey set — cloud-fabric cropped bra top and high-waist leggings. Soft as a cloud, sculpting as a dream. My Pilates uniform.\n\n👝 The Loewe Puzzle mini bag in black leather — because even at the studio, I need a beautiful bag. It holds my phone, keys, and dignity.\n\n👟 New Balance 550 in cream and gold — the it-sneaker of the moment in Paris. Every Parisienne owns a pair (or three).\n\nAthletic chic tip: invest in fabric quality — it shows immediately. And always one luxe accessory to elevate the look! 🌟`
+  },
+  vintage:{
+    badge_fr:'Vintage Française', badge_en:'Vintage Française',
+    hair:'#e8e0d0', hairStyle:'waves',
+    bodyColor:'#c17a2a', topColor:'#b86a1a', legColor:'#c17a2a',
+    shoeColor:'#c8c0ae', bagColor:'#c17a2a', lipColor:'#cc3333',
+    items_fr:{top:"Robe Sonia Rykiel Maille Caramel '60", bag:"Kelly Hermès Vintage Naturel", shoes:"Mules Plateforme Miu Miu Beige"},
+    items_en:{top:"Sonia Rykiel '60s Caramel Knit Dress", bag:"Vintage Hermès Kelly Natural", shoes:"Miu Miu Beige Platform Mules"},
+    desc_fr:`Le vintage, c'est ma religion! 📽️🌷\n\n💇‍♀️ Cheveux blancs argentés en vagues Hollywood des années 50 — j'ai utilisé 12 rouleaux chauffants et un spray de la collection Leonor Greyl. Résultat? Brigitte Bardot. Je ne dis pas autre chose!\n\n👗 Une mini robe en maille caramel Sonia Rykiel des années 60 avec boutons dorés — dénichée chez Paul Bert Serpette aux Puces de Saint-Ouen. Irremplaçable!\n\n🌂 Foulard vintage Hermès en soie imprimée "Jungle Love" noué en cravate — ma façon de moderniser le look vintage.\n\n👜 Le sac Kelly Hermès vintage en naturel — c'est une pièce de collection. Mon grand-père l'a acheté pour ma grand-mère à Paris en 1962. Il vaut aujourd'hui... disons beaucoup!\n\n🩴 Mules plateforme Miu Miu en cuir beige — elles font le pont parfait entre les années 70 et 2025.\n\nLa mode rétro ne vieillit jamais parce qu'elle n'a jamais vraiment changé! 👑`,
+    desc_en:`Vintage is my religion! 📽️🌷\n\n💇‍♀️ Silver-white hair set in 1950s Hollywood waves — I used 12 heated rollers and Leonor Greyl spray. The result? Brigitte Bardot. I say nothing more!\n\n👗 A 1960s Sonia Rykiel caramel knit mini dress with gold buttons — discovered at Paul Bert Serpette at the Saint-Ouen flea market. Irreplaceable!\n\n🌂 Vintage Hermès silk "Jungle Love" scarf tied as a necktie — my way of modernising the vintage look.\n\n👜 The vintage natural Hermès Kelly bag — it's a collector's piece. My grandfather bought it for my grandmother in Paris in 1962. It's worth today... let's say a lot!\n\n🩴 Miu Miu beige leather platform mules — they bridge the 1970s and 2025 perfectly.\n\nRetro fashion never ages because it never really changed! 👑`
+  },
+  new1:{
+    badge_fr:'Look Automne Chic', badge_en:'Autumn Chic Look',
+    hair:'#5c3d1e', hairStyle:'loose',
+    bodyColor:'#8b6040', topColor:'#6b4030', legColor:'#2a1a10',
+    shoeColor:'#1a1a1a', bagColor:'#2d5a27', lipColor:'#994444',
+    items_fr:{top:'Pull Ralph Lauren Cable-Knit Navy + Jupe Midi Cuir', bag:'Sac College YSL Vert Forêt', shoes:'Bottines Chelsea Marron'},
+    items_en:{top:'Ralph Lauren Cable-Knit Navy + Leather Midi Skirt', bag:'YSL College Bag Forest Green', shoes:'Brown Chelsea Boots'},
+    desc_fr:`Mon look automne signature — feuilles mortes, café chaud et style parfait! 🍂\n\n💇‍♀️ Cheveux châtains légèrement ondulés, laissés tomber naturellement. Une paire de boucles d'oreilles dorées vintage en forme de feuille — parfait pour la saison.\n\n🧶 Le cardigan cable-knit Ralph Lauren navy avec l'emblème RL doré — oversize sur mesure, rentré dans une jupe midi en cuir caramel tabac. Le contraste textures est essentiel!\n\n👜 Le sac College Saint Laurent matelassé vert forêt avec son grand monogramme YSL doré — la couleur parfaite pour l'automne. Il ajoute une touche de couleur profonde et sophistiquée à l'ensemble neutre.\n\n👢 Bottines Chelsea en cuir brun cognac — élancées, polyvalentes, indestructibles. Ma paire préférée depuis 5 ans!\n\n💄 Lèvres bordeaux nude, blush rosé délicat.\n\nL'automne à Paris est la plus belle saison pour s'habiller. Les couleurs naturelles sont vos meilleures amies! 🍁`,
+    desc_en:`My signature autumn look — fallen leaves, warm coffee and perfect style! 🍂\n\n💇‍♀️ Chestnut hair lightly waved, falling naturally. A pair of vintage gold leaf-shaped earrings — perfect for the season.\n\n🧶 The Ralph Lauren navy cable-knit cardigan with gold RL emblem — perfectly oversized, tucked into a tobacco caramel leather midi skirt. The texture contrast is essential!\n\n👜 The Saint Laurent quilted College bag in forest green with its large YSL gold monogram — the perfect colour for autumn. It adds a deep, sophisticated pop of colour to the neutral ensemble.\n\n👢 Cognac brown Chelsea leather boots — sleek, versatile, indestructible. My favourite pair for 5 years!\n\n💄 Bordeaux nude lips, delicate rosy blush.\n\nAutumn in Paris is the most beautiful season to dress. Earth tones are your best friends! 🍁`
+  }
+};
+
+// ═══════════════════════════════════════════════════════════
+// SMART ISABELLE BRAIN — occasions + intent detection
+// ═══════════════════════════════════════════════════════════
+function detectIntent(msg){
+  const m = msg.toLowerCase();
+  // Outfit change commands
+  if(m.match(/date|rendez.vous|rencard|dîner romantique|dinner date|romantic/)) return {type:'outfit', key:'date'};
+  if(m.match(/bureau|office|travail|work|réunion|meeting|professionnel|boulot|corporate/)) return {type:'outfit', key:'office'};
+  if(m.match(/casual|décontract|relaxed|breton|week.end|weekend|marché|market|quotidien|everyday/)) return {type:'outfit', key:'casual'};
+  if(m.match(/soirée|gala|evening|gown|cérémonie|cérémonie|red.carpet|cocktail|formel|formal/)) return {type:'outfit', key:'evening'};
+  if(m.match(/rue|street|marais|balade|walk|flâner|city|promenade/)) return {type:'outfit', key:'street'};
+  if(m.match(/sport|gym|pilates|yoga|workout|fitness|athlet|salle/)) return {type:'outfit', key:'sporty'};
+  if(m.match(/vintage|rétro|retro|années|classic|bardot|old school/)) return {type:'outfit', key:'vintage'};
+  if(m.match(/automne|autumn|fall|nouveau look|new look|autre look|another look|change/)) return {type:'outfit', key:'new1'};
+  // Describe current outfit
+  if(m.match(/que.*port|what.*wear|tenue|outfit|look|habillé|dressed|on toi|sur toi|wearing|describe/)) return {type:'describe'};
+  // Occasion advice
+  if(m.match(/quoi mettre.*date|what.*wear.*date|comment.*habill.*date|dress.*date/)) return {type:'advice_date'};
+  if(m.match(/quoi mettre.*bureau|what.*wear.*office|quoi.*travail|how.*dress.*work/)) return {type:'advice_office'};
+  if(m.match(/quoi mettre.*mariage|what.*wear.*wedding|tenue.*mariage/)) return {type:'advice_wedding'};
+  if(m.match(/quoi mettre.*plage|what.*wear.*beach|tenue.*plage/)) return {type:'advice_beach'};
+  if(m.match(/quoi mettre.*voyage|what.*wear.*travel|tenue.*avion|airport|aéroport/)) return {type:'advice_travel'};
+  if(m.match(/quoi mettre.*fête|party|what.*wear.*party|soirée.*entre.*amis/)) return {type:'advice_party'};
+  // Brand questions
+  if(m.match(/versace/)) return {type:'brand', brand:'Versace'};
+  if(m.match(/ysl|saint.laurent/)) return {type:'brand', brand:'Saint Laurent'};
+  if(m.match(/hermes|hermès/)) return {type:'brand', brand:'Hermès'};
+  if(m.match(/chanel/)) return {type:'brand', brand:'Chanel'};
+  if(m.match(/prada/)) return {type:'brand', brand:'Prada'};
+  if(m.match(/dior/)) return {type:'brand', brand:'Dior'};
+  if(m.match(/guess/)) return {type:'brand', brand:'Guess'};
+  if(m.match(/ralph.lauren|rl polo/)) return {type:'brand', brand:'Ralph Lauren'};
+  // Category questions
+  if(m.match(/sac|bag|handbag|purse/)) return {type:'category', cat:'bags'};
+  if(m.match(/chaussure|shoe|heel|pump|sandal|mule|escarpin/)) return {type:'category', cat:'shoes'};
+  if(m.match(/parfum|perfume|fragrance|scent|odeur/)) return {type:'category', cat:'perfume'};
+  if(m.match(/bijoux|jewel|collier|bague|bracelet|earring/)) return {type:'category', cat:'jewels'};
+  // Style tips
+  if(m.match(/conseil|tip|advice|astuce|secret|style|comment être|how to be/)) return {type:'tips'};
+  // Greetings
+  if(m.match(/bonjour|bonsoir|salut|hello|hi|hey|coucou/)) return {type:'greet'};
+  // Small talk
+  if(m.match(/comment.*tu|how are you|ça va|you ok|comment vas/)) return {type:'smalltalk'};
+  return {type:'default'};
+}
+
+function getResponse(msg){
+  const intent = detectIntent(msg);
+  const l = lang;
+  const fr = l === 'fr';
+
+  switch(intent.type){
+    case 'outfit':
+      return {outfit: intent.key, text: outfits[intent.key][fr?'desc_fr':'desc_en']};
+    case 'describe':
+      return {outfit: currentOutfit, text: outfits[currentOutfit][fr?'desc_fr':'desc_en']};
+    case 'advice_date':
+      return {text: fr
+        ? `Pour un date, chérie, voici mes règles d'or! 💕\n\n1. **La robe qui bouge** — choisissez un tissu qui ondule avec chaque mouvement. Soie, crêpe ou satin léger. Rien de rigide!\n\n2. **Une couleur forte** — rouge, bordeaux, vert émeraude ou noir profond. Pas de beige pour le romantisme — sauf si c'est un beige champagne luxueux.\n\n3. **Le sac soirée** — petite pochette ou mini sac. Un grand tote sac va casser toute la magie!\n\n4. **Les chaussures** — talons si vous êtes à l'aise, kitten heels si vous préférez danser. Jamais de sneakers pour un premier date (sauf si le date c'est un match de basket 😄).\n\n5. **Le parfum** — appliquez sur les poignets, la nuque et derrière les genoux. Dior Hypnotic Poison ou YSL Mon Paris pour une soirée romantique.\n\nVoulez-vous que je me mette dans une tenue date pour vous montrer? 💋`
+        : `For a date, chérie, here are my golden rules! 💕\n\n1. **A dress that moves** — choose a fabric that flows with every movement. Silk, crêpe or light satin. Nothing rigid!\n\n2. **A strong colour** — red, bordeaux, emerald green or deep black. No beige for romance — unless it's a luxurious champagne beige.\n\n3. **The evening bag** — small clutch or mini bag. A large tote will break all the magic!\n\n4. **Shoes** — heels if you're comfortable, kitten heels if you'd rather dance. No sneakers on a first date (unless the date is a basketball game 😄).\n\n5. **The perfume** — apply on wrists, neck and behind the knees. Dior Hypnotic Poison or YSL Mon Paris for a romantic evening.\n\nWould you like me to dress in a date outfit to show you? 💋`
+      };
+    case 'advice_office':
+      return {text: fr
+        ? `La tenue de bureau parfaite — mes secrets! 👩‍💼\n\n1. **La règle du 2/3** — deux pièces neutres + une pièce statement. Exemple: pantalon noir + chemise blanche + sac Hermès caramel. Simple. Puissant.\n\n2. **Évitez les imprimés trop forts** au bureau — gardez-les pour les déjeuners ou les afterworks.\n\n3. **Le sac de bureau** — doit être structuré et de qualité. Un beau sac dit "je suis organisée et j'ai confiance". Le Birkin Hermès, le Celine Classic ou le Polène N°9 sont parfaits.\n\n4. **Les talons** — pas obligatoires! Des mocassins plats de qualité ou des ballerines Oxford sont tout aussi professionnels et infiniment plus confortables pour 8 heures de réunions.\n\n5. **Le Prada Milano** — votre cardigan ou pull logotypé peut absolument se porter au bureau. Il dit sophistication et connaissance de la mode.\n\nMon conseil clé: achetez moins, achetez mieux. 5 pièces de qualité valent mieux que 20 pièces moyennes! 💼`
+        : `The perfect office outfit — my secrets! 👩‍💼\n\n1. **The 2/3 rule** — two neutral pieces + one statement piece. Example: black trousers + white shirt + caramel Hermès bag. Simple. Powerful.\n\n2. **Avoid overly bold prints** at the office — save them for lunch or after-work.\n\n3. **The office bag** — must be structured and quality. A beautiful bag says "I'm organised and confident". The Hermès Birkin, the Celine Classic or the Polène N°9 are perfect.\n\n4. **Heels** — not mandatory! Quality flat loafers or Oxford flats are equally professional and infinitely more comfortable for 8 hours of meetings.\n\n5. **Prada Milano** — your logo cardigan or sweater can absolutely be worn to the office. It says sophistication and fashion knowledge.\n\nMy key advice: buy less, buy better. 5 quality pieces are worth more than 20 average ones! 💼`
+      };
+    case 'advice_wedding':
+      return {text: fr
+        ? `Un mariage! Quelle joie! 💐 Voici mes règles:\n\n👗 **Couleur**: jamais blanc ou ivoire (c'est la mariée!), jamais noir (trop funèbre pour certains), jamais rouge si la mariée en porte.\n\nParfait: bleu poudre, champagne rose, vert sauge, bleu marine, lavande, corail.\n\n👗 **Style**: midi ou longueur cocktail pour une cérémonie en salle. Long pour un château ou une cérémonie en plein air.\n\n👠 **Chaussures**: pensez aux talons qui s'enfoncent sur les pelouses! Kitten heel ou wedge si la cérémonie est en plein air.\n\n👜 **Sac**: pochette élégante, rien de trop grand.\n\n💄 **Maquillage**: élégant et long-tenue — larmes de joie garanties! Fond de teint waterproof obligatoire.\n\nPuis-je vous montrer ma tenue de cérémonie préférée? ✨`
+        : `A wedding! How joyous! 💐 Here are my rules:\n\n👗 **Colour**: never white or ivory (that's the bride!), never black (too funereal for some), never red if the bride is wearing it.\n\nPerfect: powder blue, blush champagne, sage green, navy, lavender, coral.\n\n👗 **Style**: midi or cocktail length for an indoor ceremony. Floor-length for a château or outdoor ceremony.\n\n👠 **Shoes**: think about heels that sink into lawns! Kitten heel or wedge for outdoor ceremonies.\n\n👜 **Bag**: elegant clutch, nothing too large.\n\n💄 **Makeup**: elegant and long-lasting — happy tears guaranteed! Waterproof foundation is mandatory.\n\nCan I show you my favourite ceremony outfit? ✨`
+      };
+    case 'advice_beach':
+      return {text: fr
+        ? `La plage version chic française! ☀️🌊\n\n👙 **Maillot**: une pièce ou deux pièces côtelé — jamais de bikini flashy à imprimé criard. Ecru, marine, rouge ou rayé marinière.\n\n🩴 **Sandales**: les Havaianas classiques OU des sandales en cuir tressé Saint Laurent ou Jacquemus. Pas de compromis!\n\n👜 **Sac de plage**: le tote en raphia Jacquemus "Le Panier" ou le Loewe Paula's Ibiza. Grand, chic, imperméable intérieur.\n\n🕶️ **Lunettes**: surdimensionnées Céline ou Jacquemus. Aussi grande que votre personnalité!\n\n🧣 **Le pareo**: soie ou lin — se porte en jupe, en robe ou sur les épaules. Polyvalent!\n\n☀️ **La règle d'or**: SPF 50 est le vrai accessoire de luxe. La peau protégée vieillit en beauté! 🌹`
+        : `The beach, French chic version! ☀️🌊\n\n👙 **Swimsuit**: one-piece or ribbed two-piece — never flashy printed bikini. Ecru, navy, red or Breton stripe.\n\n🩴 **Sandals**: classic Havaianas OR Saint Laurent or Jacquemus braided leather sandals. No compromise!\n\n👜 **Beach bag**: the Jacquemus "Le Panier" raffia tote or the Loewe Paula's Ibiza. Large, chic, waterproof lining.\n\n🕶️ **Sunglasses**: oversized Céline or Jacquemus. As large as your personality!\n\n🧣 **The pareo**: silk or linen — worn as a skirt, dress or on the shoulders. So versatile!\n\n☀️ **The golden rule**: SPF 50 is the true luxury accessory. Protected skin ages beautifully! 🌹`
+      };
+    case 'advice_travel':
+      return {text: fr
+        ? `L'aéroport n'est pas une excuse pour être mal habillée! ✈️\n\n1. **Le trench coat** — votre meilleur allié en avion. Chaud, élégant, protège votre tenue. Pliez-le dans les overhead bins.\n\n2. **Le cashmere** — pull ou cardigan léger. Parfait pour la climatisation glaciale de l'avion.\n\n3. **Le jean taille haute** + sneakers blanches — confortable pour 12h et présentable à l'arrivée.\n\n4. **Évitez** les robes serrées, les talons hauts (pieds gonflés en altitude!), les bijoux à multiples boucles (sécurité!).\n\n5. **Le sac voyage** — le Hermès Garden Party ou le Goyard Saint-Louis: LE duo cabine parfait. Ou simplement un beau tote en cuir.\n\n6. **La pochette de produits** — Herbivore + La Mer en format TSA. Hydratation en vol c'est vital!\n\nL'élégance en voyage c'est: confort + qualité + une pièce signature. C'est tout! ✨`
+        : `The airport is no excuse to be badly dressed! ✈️\n\n1. **The trench coat** — your best ally on a plane. Warm, elegant, protects your outfit. Folds into overhead bins.\n\n2. **The cashmere** — light sweater or cardigan. Perfect for the icy plane air conditioning.\n\n3. **High-waist jeans** + white sneakers — comfortable for 12 hours and presentable on arrival.\n\n4. **Avoid** tight dresses, high heels (swollen feet at altitude!), multi-clasp jewellery (security!).\n\n5. **The travel bag** — the Hermès Garden Party or the Goyard Saint-Louis: THE perfect cabin duo. Or simply a beautiful leather tote.\n\n6. **The product pouch** — Herbivore + La Mer in TSA format. In-flight hydration is vital!\n\nTravel elegance is: comfort + quality + one signature piece. That's all! ✨`
+      };
+    case 'advice_party':
+      return {text: fr
+        ? `Une fête entre amis — le look parfait! 🎉\n\n Pour une soirée décontractée: le jean premium slim (AG Jeans ou Frame) + un top bustier satiné + veste blazer oversize + escarpins kitten heel ou mules. Sac clutch petite taille.\n\n Pour une soirée plus habillée: la mini robe en jersey ou la combinaison chic. Choisissez un look monochrome pour l'impact maximal — tout noir, tout crème ou tout bordeaux.\n\n Les bijoux de soirée: boucles statement, pas besoin de plus. Une grosse boucle d'oreille et rien autour du cou — moins c'est plus!\n\n Le secret: portez quelque chose dans lequel vous vous sentez PUISSANTE. La confiance en soi est toujours le plus bel accessoire. 🌟\n\nVoulez-vous que j'essaie un look de soirée pour vous? 🥂`
+        : `A party with friends — the perfect look! 🎉\n\n For a casual party: premium slim jeans (AG Jeans or Frame) + satin bustier top + oversized blazer jacket + kitten heel pumps or mules. Small clutch bag.\n\n For a dressier party: jersey mini dress or chic jumpsuit. Choose a monochrome look for maximum impact — all black, all cream or all bordeaux.\n\n Evening jewellery: statement earrings, nothing more needed. One large earring and nothing around the neck — less is more!\n\n The secret: wear something you feel POWERFUL in. Self-confidence is always the most beautiful accessory. 🌟\n\nWould you like me to try a party look for you? 🥂`
+      };
+    case 'brand':
+      const brandTexts = {
+        fr:{
+          'Versace': `Ah, Versace! La maison de la démesure italienne! 🏛️✨\n\nVersace c'est l'excès magnifique — or, méduse, baroque, print Barocco. Donatella a hérité de l'empire de Gianni avec une grâce absolue.\n\nMon pièce Versace préférée? Le tote canvas Medusa — il dit "je connais mes icônes" avec une décontraction parfaite. Le médaillon doré est immédiatement reconnaissable dans n'importe quelle pièce du monde.\n\nPour une Parisienne, Versace s'associe parfaitement avec du noir simple — laissez la pièce parler! 🌟`,
+          'Saint Laurent': `Saint Laurent — la maison de l'élégance rebelle! 🖤\n\nYves Saint Laurent a tout changé: il a mis les femmes en pantalon, en smoking, en safari. Il leur a donné le pouvoir de s'habiller comme des hommes... tout en restant absolument femmes.\n\nMes pièces YSL favorites: le sac College matelassé vert forêt (iconique!), et les sandales Opyum avec le talon monogramme doré — l'un des designs de chaussures les plus reconnaissables de l'histoire.\n\nYSL c'est le luxe avec une attitude. Je suis complètement fan! 💫`,
+          'Hermès': `Hermès — la maison de l'éternité! 🧡\n\nFondée comme sellier en 1837, Hermès est devenue la définition même du luxe silencieux. Pas besoin de logo apparent — le cuir Togo, les coutures sellier, la quincaillerie palladium parlent d'eux-mêmes.\n\nLe Birkin est l'investissement mode ultime — sa valeur augmente de 14% par an en moyenne. Mais il y a un monde au-delà: le Garden Party, le Evelyne, le Kelly... chacun raconte une histoire.\n\nMon rapport à Hermès: je n'achète que ce que je peux porter toute ma vie. C'est la philosophie de la maison. Et la mienne! 🌹`,
+          'Chanel': `Chanel — mon amour absolu! 💛\n\nCoco Chanel a libéré les femmes du corset et leur a donné: la petite robe noire, le tailleur tweed, le sac 2.55, les chaussures bicolores. Elle a inventé le style moderne féminin.\n\nAujourd'hui sous Virginie Viard, Chanel maintient cet équilibre magique entre héritage et modernité.\n\nMes must-haves Chanel: le parfum N°5 bien sûr (produit Chanel vendu toutes les 55 secondes dans le monde), le tailleur tweed (ma pièce préférée de ma garde-robe), et le 2.55 en cuir d'agneau — parfait et intemporel. 💎`,
+          'Prada': `Prada — l'intellectuelle de la mode! 🔮\n\nMiuccia Prada a transformé la marque familiale en une maison qui questionne ce que "luxe" signifie vraiment. Elle fait des choses laides qui deviennent belles, des choses simples qui deviennent complexes.\n\nLe pull intarsia PRADA MILANO et le cardigan bicolore — des pièces qui disent "j'ai du style mais je ne fais pas d'effort apparent". C'est le summum de la sophistication.\n\nLe sac Re-Edition Nylon est d'ailleurs un de mes incontournables pour le week-end! 🌟`,
+          'Dior': `Dior — la maison du rêve français! 🌹\n\nChristian Dior a relancé la mode après-guerre avec le "New Look" en 1947: taille cintrée, jupe volumineuse, épaules douces. Il a donné aux femmes la joie de s'habiller à nouveau.\n\nAujourd'hui Maria Grazia Chiuri dirige Dior avec une vision féministe forte — son premier défilé avec le t-shirt "We Should All Be Feminists" est entré dans l'histoire.\n\nMon parfum Dior adoré: J'adore (classique) et Miss Dior pour les matins. Le sac Lady Dior avec ses cannages? Une icône absolue. 💫`,
+          'Guess': `Guess — le glam américain avec une touche européenne! 🌟\n\nGuess a créé son image avec les publicités black & white de Claudia Schiffer dans les années 80 — instantanément glamour et sexy.\n\nLes mules suède noir Guess sont une excellente entrée dans le monde des chaussures de qualité — le talon sculptural, le badge triangulaire doré, la simplicité du suède. Pour le prix, c'est une très bonne affaire!\n\nParfait avec un jean slim et un blazer pour un look soirée décontractée. 🖤`,
+          'Ralph Lauren': `Ralph Lauren — le rêve américain raffiné! 🏇\n\nRalph Lauren a créé un univers complet: le cheval de polo, les Hampton weekends, le yacht, le safari kenyan. Chaque collection raconte une histoire de vie aspirationnelle.\n\nLe cable-knit cardigan RL navy est une pièce intemporelle — la qualité du mérinos, les boutons dorés, l'emblème brodé. Porté sur une chemise oxford boutonnée pour le style preppy parfait, ou oversize avec un jean pour le weekend.\n\nLes escarpins canvas/marine bicolores? La définition de l'élégance preppy-chic! 🎾`
+        },
+        en:{
+          'Versace': `Ah, Versace! The house of magnificent Italian excess! 🏛️✨\n\nVersace is glorious excess — gold, Medusa, baroque, Barocco print. Donatella inherited Gianni's empire with absolute grace.\n\nMy favourite Versace piece? The Medusa canvas tote — it says "I know my icons" with perfect nonchalance. The gold medallion is instantly recognisable in any room in the world.\n\nFor a Parisienne, Versace pairs perfectly with simple black — let the piece do the talking! 🌟`,
+          'Saint Laurent': `Saint Laurent — the house of rebellious elegance! 🖤\n\nYves Saint Laurent changed everything: he put women in trousers, in tuxedos, in safari jackets. He gave them the power to dress like men... while remaining absolutely women.\n\nMy favourite YSL pieces: the forest green quilted College bag (iconic!), and the Opyum sandals with the gold monogram heel — one of the most recognisable shoe designs in history.\n\nYSL is luxury with attitude. I'm completely obsessed! 💫`,
+          'Hermès': `Hermès — the house of eternity! 🧡\n\nFounded as a saddler in 1837, Hermès became the very definition of quiet luxury. No need for visible logos — the Togo leather, the saddle stitching, the palladium hardware speak for themselves.\n\nThe Birkin is the ultimate fashion investment — its value increases by an average of 14% per year. But there's a world beyond it: the Garden Party, the Evelyne, the Kelly... each tells a story.\n\nMy relationship with Hermès: I only buy what I can wear for my entire life. That's the house's philosophy. And mine! 🌹`,
+          'Chanel': `Chanel — my absolute love! 💛\n\nCoco Chanel liberated women from the corset and gave them: the little black dress, the tweed suit, the 2.55 bag, the two-tone shoes. She invented modern feminine style.\n\nMust-have Chanel: N°5 perfume of course (a Chanel product is sold every 55 seconds worldwide), the tweed suit (my favourite piece in my wardrobe), and the 2.55 in lambskin — perfect and timeless. 💎`,
+          'Prada': `Prada — the intellectual of fashion! 🔮\n\nMiuccia Prada transformed the family brand into a house that questions what "luxury" truly means. She makes ugly things beautiful, simple things complex.\n\nThe PRADA MILANO intarsia sweater and the bicolour cardigan — pieces that say "I have style but I make no apparent effort". That's the pinnacle of sophistication.\n\nThe Re-Edition Nylon bag is also one of my weekend essentials! 🌟`,
+          'Dior': `Dior — the house of French dreams! 🌹\n\nChristian Dior relaunched fashion after the war with the "New Look" in 1947: cinched waist, full skirt, soft shoulders. He gave women the joy of dressing again.\n\nToday Maria Grazia Chiuri leads Dior with a strong feminist vision — her first show with the "We Should All Be Feminists" t-shirt made history.\n\nMy beloved Dior perfumes: J'adore (classic) and Miss Dior for mornings. The Lady Dior bag with its cannage? An absolute icon. 💫`,
+          'Guess': `Guess — American glam with a European touch! 🌟\n\nGuess created its image with Claudia Schiffer's black and white ads in the 80s — instantly glamorous and sexy.\n\nThe Guess black suede mules are an excellent entry into quality shoes — the sculptural heel, the gold triangle badge, the simplicity of the suede. For the price, it's very good value!\n\nPerfect with slim jeans and a blazer for a smart casual evening look. 🖤`,
+          'Ralph Lauren': `Ralph Lauren — the refined American dream! 🏇\n\nRalph Lauren created an entire universe: the polo horse, Hampton weekends, the yacht, the Kenyan safari. Every collection tells a story of aspirational living.\n\nThe RL navy cable-knit cardigan is a timeless piece — the merino quality, the gold buttons, the embroidered emblem. Worn over a button-down oxford shirt for the perfect preppy style, or oversized with jeans for the weekend.\n\nThe bicolour canvas/navy pumps? The definition of preppy-chic elegance! 🎾`
+        }
+      };
+      return {text: (brandTexts[fr?'fr':'en'][intent.brand] || (fr?`Oh, je connais bien ${intent.brand}! C'est une maison remarquable avec une vision unique. Qu'est-ce qui vous attire vers cette marque? 💫`:`Oh, I know ${intent.brand} well! A remarkable house with a unique vision. What draws you to this brand? 💫`))};
+    case 'category':
+      const catTexts = {
+        fr:{
+          bags:`Les sacs — ma passion dévorante! 👜✨\n\nMes convictions:\n\n1. **Un bon sac vaut l'investissement** — il dure des décennies si vous l'entretenez.\n\n2. **Les 3 sacs essentiels**: (1) Un sac structuré de jour — le Birkin, le Celine Classic, le Polène. (2) Un sac soirée — clutch ou mini pochette. (3) Un tote pour tout le reste — Jacquemus, Telfar, Ami Paris.\n\n3. **Le sac raconte votre histoire** — choisissez-le comme vous choisissez vos amis: avec soin et pour longtemps!\n\nNous avons chez Maison Lumière: le Tote Versace canvas, le sac College YSL vert, et le Birkin Hermès Gold. Trois sacs, trois univers! 🌟`,
+          shoes:`Les chaussures — elles disent tout! 👠\n\nMa philosophie:\n\n1. **Pour le bureau**: escarpins max 7cm ou ballerines de qualité. Le confort est productivité!\n\n2. **Pour un date**: talon 8-10cm — présence et sensualité. Les sandales YSL Opyum sont parfaites.\n\n3. **Pour le quotidien**: sneakers blanches (Veja, Common Projects) ou mules plates qualité.\n\n4. **Pour soirée gala**: talons audacieux et beauté absolue — les pieds peuvent souffrir pour l'art! 😄\n\nNos chaussures en boutique: Mule suède Guess, Escarpins canvas RL bicolores, Sandales YSL Opyum 110. Chacune pour une occasion différente! 💫`,
+          perfume:`Le parfum — le dernier accessoire et le plus puissant! 🌸\n\nMes parfums signatures selon l'occasion:\n\n☀️ **Matin/Bureau**: Chanel Chance Eau Fraîche ou Dior Miss Dior — légers, frais, professionnels.\n\n🌙 **Soirée romantique**: Dior Hypnotic Poison, YSL Black Opium, Tom Ford Black Orchid — intenses, sensuels, inoubliables.\n\n🌿 **Week-end décontracté**: Maison Margiela Replica "Flower Market" ou Acqua di Parma.\n\n💡 **Le secret de pose**: poignets, nuque, derrière les genoux, et... dans les cheveux. Le parfum dans les cheveux dure plus longtemps!\n\nLes Français disent: "Une femme qui ne porte pas de parfum n'a pas d'avenir." C'est ma devise! 💋`,
+          jewels:`Les bijoux — la touche finale! 💎\n\nMes règles d'or:\n\n1. **Moins c'est plus** — une pièce statement suffit. Si vous portez de grosses boucles d'oreilles, pas de collier. Si vous portez un collier statement, boucles discrètes.\n\n2. **Mixez les métaux** — l'or et l'argent ensemble sont TENDANCE, pas une erreur.\n\n3. **Les classiques intemporels**: perles (Dior, Mikimoto), chaîne fine en or, manchette architecturale.\n\n4. **Investissez dans une pièce** — mieux vaut un beau bracelet Cartier Love que 20 bijoux fantaisie.\n\nLe bijou parfait transforme la tenue la plus simple en quelque chose d'extraordinaire! ✨`
+        },
+        en:{
+          bags:`Bags — my consuming passion! 👜✨\n\nMy convictions:\n\n1. **A good bag is worth the investment** — it lasts decades if you care for it.\n\n2. **The 3 essential bags**: (1) A structured day bag — the Birkin, the Celine Classic, the Polène. (2) An evening bag — clutch or mini pouch. (3) A tote for everything else — Jacquemus, Telfar, Ami Paris.\n\n3. **The bag tells your story** — choose it like you choose your friends: with care and for a long time!\n\nAt Maison Lumière we have: the Versace canvas tote, the YSL College bag in green, and the Hermès Gold Birkin. Three bags, three universes! 🌟`,
+          shoes:`Shoes — they say everything! 👠\n\nMy philosophy:\n\n1. **For the office**: max 7cm heels or quality flats. Comfort is productivity!\n\n2. **For a date**: 8-10cm heel — presence and sensuality. The YSL Opyum sandals are perfect.\n\n3. **For everyday**: white sneakers (Veja, Common Projects) or quality flat mules.\n\n4. **For a gala**: bold heels and absolute beauty — feet can suffer for art! 😄\n\nOur boutique shoes: Guess suede mule, RL bicolour canvas pumps, YSL Opyum 110 sandals. Each for a different occasion! 💫`,
+          perfume:`Perfume — the last and most powerful accessory! 🌸\n\nMy signature scents by occasion:\n\n☀️ **Morning/Office**: Chanel Chance Eau Fraîche or Dior Miss Dior — light, fresh, professional.\n\n🌙 **Romantic evening**: Dior Hypnotic Poison, YSL Black Opium, Tom Ford Black Orchid — intense, sensual, unforgettable.\n\n🌿 **Casual weekend**: Maison Margiela Replica "Flower Market" or Acqua di Parma.\n\n💡 **Application secret**: wrists, neck, behind the knees, and... in the hair. Perfume in hair lasts longest!\n\nThe French say: "A woman without perfume has no future." That's my motto! 💋`,
+          jewels:`Jewels — the final touch! 💎\n\nMy golden rules:\n\n1. **Less is more** — one statement piece is enough. Big earrings = no necklace. Statement necklace = understated earrings.\n\n2. **Mix metals** — gold and silver together are TRENDY, not a mistake.\n\n3. **Timeless classics**: pearls (Dior, Mikimoto), fine gold chain, architectural cuff.\n\n4. **Invest in one piece** — better one beautiful Cartier Love bracelet than 20 costume pieces.\n\nThe perfect jewel transforms the simplest outfit into something extraordinary! ✨`
+        }
+      };
+      return {text: catTexts[fr?'fr':'en'][intent.cat] || (fr?`Bonne question! Dites-moi plus précisément ce que vous cherchez et je vous aiderai! 💛`:`Good question! Tell me more specifically what you're looking for and I'll help! 💛`)};
+    case 'tips':
+      const tips_fr = [
+        `Les secrets de style de la vraie Parisienne! ✨\n\n1. **Investir dans moins** — 10 pièces de qualité valent mieux que 50 pièces fast fashion.\n\n2. **La règle du chiffon** — portez toujours une pièce chiffonnée intentionnellement: chemise légèrement sortie, col froissé, manches retroussées.\n\n3. **Une couleur signature** — choisissez une couleur pour laquelle vous êtes connue. La mienne? Le bordeaux. On me reconnaît toujours!\n\n4. **L'accessoire inattendu** — mélangez luxe et vintage, designer et trouvaille de brocante.\n\n5. **Les soins de la peau** sont la fondation — le meilleur maquillage ne remplace pas une belle peau.\n\nVoilà! 💋`,
+        `Comment s'habiller comme une Parisienne! 🥐\n\n1. **Ne jamais faire trop d'efforts visibles** — le look doit sembler naturel même s'il a pris 2 heures.\n\n2. **La palette neutre** — noir, blanc, crème, camel, marine, bordeaux. Ces couleurs se mélangent toutes.\n\n3. **Une seule pièce statement par tenue** — sac spectaculaire + reste neutre = tenue parfaite.\n\n4. **Le rouge à lèvres rouge** est toujours une bonne idée — même pour aller à la boulangerie!\n\n5. **La confiance est le vrai accessoire** — portez ce que vous aimez, pas ce que les magazines disent.\n\nStyle c'est avoir une opinion! 🌹`
+      ];
+      const tips_en = [
+        `The secrets of the real Parisian style! ✨\n\n1. **Invest in less** — 10 quality pieces are worth more than 50 fast fashion pieces.\n\n2. **The undone rule** — always wear one intentionally undone piece: slightly untucked shirt, rumpled collar, rolled sleeves.\n\n3. **A signature colour** — choose a colour you're known for. Mine? Bordeaux. People always recognise me!\n\n4. **The unexpected accessory** — mix luxury and vintage, designer and flea market finds.\n\n5. **Skincare is the foundation** — the best makeup cannot replace beautiful skin.\n\nVoilà! 💋`,
+        `How to dress like a Parisienne! 🥐\n\n1. **Never show too much visible effort** — the look must seem natural even if it took 2 hours.\n\n2. **The neutral palette** — black, white, cream, camel, navy, bordeaux. These colours all mix together.\n\n3. **One statement piece per outfit** — spectacular bag + neutral rest = perfect outfit.\n\n4. **Red lipstick** is always a good idea — even to go to the bakery!\n\n5. **Confidence is the real accessory** — wear what you love, not what magazines tell you.\n\nStyle means having an opinion! 🌹`
+      ];
+      const tipsArr = fr ? tips_fr : tips_en;
+      return {text: tipsArr[Math.floor(Math.random()*tipsArr.length)]};
+    case 'greet':
+      return {text: fr
+        ? `Bonjour ma belle! 💋 Je suis Isabelle Beaumont, votre conseillère style personnelle de Paris.\n\nJe peux:\n✨ Décrire ma tenue du jour\n👗 Me changer selon votre demande\n💡 Vous conseiller pour chaque occasion\n🛍️ Parler des marques de notre boutique\n\nPosez-moi n'importe quelle question mode — j'adore ça! 🌹`
+        : `Hello ma belle! 💋 I'm Isabelle Beaumont, your personal style advisor from Paris.\n\nI can:\n✨ Describe today's outfit\n👗 Change looks on your request\n💡 Advise you for every occasion\n🛍️ Talk about the brands in our boutique\n\nAsk me anything about fashion — I love it! 🌹`
+      };
+    case 'smalltalk':
+      return {text: fr
+        ? `Je suis magnifique, merci de demander! 😄✨ Entre deux collections Chanel et un déjeuner chez Café de Flore, je suis toujours dans mon élément!\n\nEt vous, comment puis-je vous aider aujourd'hui? Mode? Style? Conseils pour une occasion spéciale? 💫`
+        : `I'm magnificent, thank you for asking! 😄✨ Between Chanel collections and lunch at Café de Flore, I'm always in my element!\n\nAnd you, how can I help you today? Fashion? Style? Advice for a special occasion? 💫`
+      };
+    default:
+      const defs_fr = [
+        `Hmm, intéressant! 🤔 Je ne suis pas sûre d'avoir compris, chérie. Essayez:\n\n• "Que portes-tu?" — pour ma tenue\n• "Pour un date, quoi mettre?" — conseils occasion\n• "Mets une tenue de bureau" — je me change!\n• "Parle-moi de Chanel" — infos marque\n\nQu'est-ce qui vous ferait plaisir? 💛`,
+        `Ma chérie, les questions de mode sont infinies et j'adore toutes les réponses! 🌹 Demandez-moi:\n\n👗 De me changer (soirée, bureau, casual...)\n💡 Des conseils pour une occasion\n🛍️ Des infos sur nos sacs, chaussures, hauts\n\nJe suis là pour vous! ✨`
+      ];
+      const defs_en = [
+        `Hmm, interesting! 🤔 I'm not sure I understood, chérie. Try:\n\n• "What are you wearing?" — for my outfit\n• "What to wear on a date?" — occasion advice\n• "Put on an office outfit" — I'll change!\n• "Tell me about Chanel" — brand info\n\nWhat would you like? 💛`,
+        `Ma chérie, fashion questions are infinite and I love all the answers! 🌹 Ask me:\n\n👗 To change my look (evening, office, casual...)\n💡 Advice for an occasion\n🛍️ Info on our bags, shoes, tops\n\nI'm here for you! ✨`
+      ];
+      const defsArr = fr ? defs_fr : defs_en;
+      return {text: defsArr[Math.floor(Math.random()*defsArr.length)]};
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// SVG OUTFIT UPDATES
+// ═══════════════════════════════════════════════════════════
+function updateIsabelleSVG(outfitKey){
+  const o = outfits[outfitKey];
+  // Hair
+  document.getElementById('svgHair').setAttribute('fill', o.hair);
+  // Lip color
+  document.getElementById('svgHair').parentNode.querySelector('path[d^="M36"]') &&
+    (document.querySelectorAll('#isabelleSVG path')[5].setAttribute('stroke', o.lipColor));
+  // Body
+  document.getElementById('svgBody').setAttribute('fill', o.bodyColor);
+  document.getElementById('svgTop').setAttribute('fill', o.topColor);
+  document.getElementById('svgLegL').setAttribute('fill', o.legColor);
+  document.getElementById('svgLegR').setAttribute('fill', o.legColor);
+  // Shoes
+  document.getElementById('svgShoeL').setAttribute('fill', o.shoeColor);
+  document.getElementById('svgShoeR').setAttribute('fill', o.shoeColor);
+  document.getElementById('svgHeelL').setAttribute('stroke', o.shoeColor);
+  document.getElementById('svgHeelR').setAttribute('stroke', o.shoeColor);
+  // Bag
+  document.getElementById('svgBag').setAttribute('fill', o.bagColor);
+  document.getElementById('svgBagHandle').setAttribute('stroke', o.bagColor);
+  // Arm colors
+  document.getElementById('svgArmL').setAttribute('stroke', '#f0c89a');
+  document.getElementById('svgArmR').setAttribute('stroke', '#f0c89a');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════
+let lang = 'fr';
+let chatOpen = false;
+let isTyping = false;
+let currentOutfit = 'default';
+let cart = [];
+let currentFilter = 'all';
+
+// ═══════════════════════════════════════════════════════════
+// LANG ENGINE
+// ═══════════════════════════════════════════════════════════
+function t(key){ return (T[lang]&&T[lang][key]) || (T['en']&&T['en'][key]) || key; }
+
+function setLang(l){
+  lang = l;
+  document.getElementById('btnEN').classList.toggle('active', l==='en');
+  document.getElementById('btnFR').classList.toggle('active', l==='fr');
+  document.documentElement.lang = l;
+  applyTranslations();
+  renderMarquee();
+  renderFilters();
+  renderProducts(currentFilter);
+  renderQuickReplies();
+  updateCart();
+  const o = outfits[currentOutfit];
+  const items = o[l==='fr'?'items_fr':'items_en'];
+  document.getElementById('outfitBadge').textContent = o['badge_'+(l==='fr'?'fr':'en')];
+  document.getElementById('itemTop').textContent = items.top;
+  document.getElementById('itemBag').textContent = items.bag;
+  document.getElementById('itemShoes').textContent = items.shoes;
+}
+
+function applyTranslations(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    key.endsWith('_html') ? (el.innerHTML=val) : (el.textContent=val);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// CURSOR
+// ═══════════════════════════════════════════════════════════
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function ac(){rx+=(mx-rx)*.17;ry+=(my-ry)*.17;cursor.style.left=mx+'px';cursor.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ac);})();
+document.querySelectorAll('a,button,.product-card,.collection-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.borderColor='rgba(201,169,110,.6)';});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(201,169,110,.4)';});
+});
+
+// ═══════════════════════════════════════════════════════════
+// MARQUEE
+// ═══════════════════════════════════════════════════════════
+function renderMarquee(){
+  const items = t('marquee');
+  const doubled = [...items,...items,...items];
+  document.getElementById('marqueeTrack').innerHTML = doubled.map(i=>`<div class="marquee-item">${i}</div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
+// PRODUCTS
+// ═══════════════════════════════════════════════════════════
+const filterKeys = ['all','sacs','chaussures','hauts'];
+
+function renderFilters(){
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = filterKeys.map(f=>`<button class="filter-btn${currentFilter===f?' active':''}" data-filter="${f}">${t('filter_'+f)}</button>`).join('');
+  bar.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{currentFilter=btn.dataset.filter;renderFilters();renderProducts(currentFilter);});
+  });
+}
+
+function renderProducts(filter='all'){
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '';
+  products.filter(p=>filter==='all'||p.cat===filter).forEach((p,i)=>{
+    const name = lang==='fr'?p.name_fr:p.name_en;
+    const tag  = lang==='fr'?p.tag_fr:p.tag_en;
+    const card = document.createElement('div');
+    card.className='product-card'; card.style.animationDelay=(i*.07)+'s';
+    card.innerHTML=`
+      <div class="pcard-wrap">
+        <div class="pcard-img">${p.svg}</div>
+        ${tag?`<div class="product-tag">${tag}</div>`:''}
+        <div class="product-overlay">
+          <button class="product-overlay-btn" onclick="addToCart(${p.id})">${t('add_to_cart')}</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${p.brand}</div>
+        <div class="product-name">${name}</div>
+        <div class="product-price">${p.old?`<s>${p.old}</s>`:''}${p.price}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// CART
+// ═══════════════════════════════════════════════════════════
+function addToCart(id){
+  const p=products.find(x=>x.id===id); if(!p) return;
+  cart.push(p); updateCart();
+  const name=lang==='fr'?p.name_fr:p.name_en;
+  showToast(`✓ ${name} ${t('toast_added')}`);
+}
+function removeFromCart(i){cart.splice(i,1);updateCart();}
+function updateCart(){
+  const ce=document.getElementById('cartCount');
+  ce.textContent=cart.length; ce.classList.toggle('visible',cart.length>0);
+  const el=document.getElementById('cartItemsEl');
+  if(cart.length===0){el.innerHTML=`<p style="opacity:.38;font-size:12px;text-align:center;padding:36px 0;">${t('cart_empty')}</p>`;}
+  else{el.innerHTML=cart.map((p,i)=>{const name=lang==='fr'?p.name_fr:p.name_en;return`<div class="cart-item"><div class="cart-item-visual" style="padding:8px;">${p.svg}</div><div class="cart-item-info"><div class="cart-item-brand">${p.brand}</div><div class="cart-item-name">${name}</div><div class="cart-item-price">${p.price}</div></div><button class="cart-item-remove" onclick="removeFromCart(${i})">✕</button></div>`;}).join('');}
+  const total=cart.reduce((s,p)=>s+parseFloat(p.price.replace('€','').replace(',','')),0);
+  document.getElementById('cartTotalPrice').textContent='€'+total.toLocaleString('fr-FR');
+}
+document.getElementById('cartBtn').addEventListener('click',()=>{document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('open');});
+document.getElementById('cartClose').addEventListener('click',closeCart);
+document.getElementById('cartOverlay').addEventListener('click',closeCart);
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('open');}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+// ═══════════════════════════════════════════════════════════
+// CHATBOT
+// ═══════════════════════════════════════════════════════════
+function setOutfit(key){
+  const o = outfits[key]; if(!o) return;
+  currentOutfit = key;
+  updateIsabelleSVG(key);
+  document.getElementById('chatbotAvatar').textContent = '👩‍🦱';
+  document.getElementById('chatAvSm').textContent = '👩‍🦱';
+  const items = o[lang==='fr'?'items_fr':'items_en'];
+  document.getElementById('outfitBadge').textContent = o['badge_'+(lang==='fr'?'fr':'en')];
+  document.getElementById('itemTop').textContent = items.top;
+  document.getElementById('itemBag').textContent = items.bag;
+  document.getElementById('itemShoes').textContent = items.shoes;
+}
+
+function renderQuickReplies(){
+  const qr = document.getElementById('quickReplies');
+  const replies=[
+    {key:'qr1', msg_en:'What are you wearing?', msg_fr:'Que portes-tu?'},
+    {key:'qr2', msg_en:'Wear evening gown', msg_fr:'Mets une tenue de soirée'},
+    {key:'qr3', msg_en:'Casual French look', msg_fr:'Look casual français'},
+    {key:'qr4', msg_en:'Style tips please', msg_fr:'Donne-moi des conseils style'},
+    {key:'qr5', msg_en:'What to wear on a date?', msg_fr:'Quoi mettre pour un date?'},
+    {key:'qr6', msg_en:'Office outfit advice', msg_fr:'Tenue de bureau?'},
+  ];
+  qr.innerHTML = replies.map(r=>`<button class="quick-reply" data-msg="${lang==='fr'?r.msg_fr:r.msg_en}">${t(r.key)}</button>`).join('');
+  qr.querySelectorAll('.quick-reply').forEach(btn=>{btn.addEventListener('click',()=>sendMessage(btn.dataset.msg));});
+}
+
+function addMessage(role, text){
+  const msgs = document.getElementById('chatMessages');
+  const wrap = document.createElement('div'); wrap.className='msg '+role;
+  wrap.innerHTML=`<div class="msg-av">${role==='ai'?'👩‍🦱':'🛍️'}</div><div class="msg-bubble">${text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div>`;
+  msgs.appendChild(wrap); msgs.scrollTop=msgs.scrollHeight;
+}
+function showTyping(){
+  const msgs=document.getElementById('chatMessages');
+  const d=document.createElement('div');d.className='msg ai';d.id='typingMsg';
+  d.innerHTML=`<div class="msg-av">👩‍🦱</div><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+}
+function removeTyping(){const t=document.getElementById('typingMsg');if(t)t.remove();}
+
+function sendMessage(text){
+  if(!text.trim()||isTyping) return;
+  isTyping=true; addMessage('user',text); document.getElementById('chatInput').value=''; showTyping();
+  setTimeout(()=>{
+    removeTyping();
+    const resp = getResponse(text);
+    if(resp.outfit) setOutfit(resp.outfit);
+    addMessage('ai', resp.text);
+    isTyping=false;
+  }, 1100+Math.random()*700);
+}
+
+document.getElementById('chatbotTrigger').addEventListener('click',()=>{
+  chatOpen=!chatOpen; document.getElementById('chatWindow').classList.toggle('open',chatOpen);
+  if(chatOpen&&document.getElementById('chatMessages').children.length===0){
+    setTimeout(()=>{showTyping();setTimeout(()=>{removeTyping();
+      addMessage('ai', lang==='fr'
+        ? `Bonsoir, ma belle! 💋 Je suis Isabelle Beaumont — votre guide de style parisien.\n\n✨ Demandez-moi ma tenue, ou posez n'importe quelle question mode:\n\n💕 "Quoi mettre pour un date?"\n👩‍💼 "Tenue de bureau?"\n👗 "Mets une tenue de soirée"\n🛍️ "Parle-moi du sac YSL"\n\nBienvenue chez Maison Lumière! 🌹`
+        : `Bonsoir, ma belle! 💋 I'm Isabelle Beaumont — your Parisian style guide.\n\n✨ Ask me about my outfit, or any fashion question:\n\n💕 "What to wear on a date?"\n👩‍💼 "Office outfit ideas?"\n👗 "Put on an evening look"\n🛍️ "Tell me about the YSL bag"\n\nWelcome to Maison Lumière! 🌹`
+      );},1000);},400);
+  }
+});
+document.getElementById('chatClose').addEventListener('click',()=>{chatOpen=false;document.getElementById('chatWindow').classList.remove('open');});
+document.getElementById('chatSendBtn').addEventListener('click',()=>sendMessage(document.getElementById('chatInput').value));
+document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage(document.getElementById('chatInput').value);});
+
+// ═══════════════════════════════════════════════════════════
+// SCROLL ANIMATIONS
+// ═══════════════════════════════════════════════════════════
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.08});
+document.querySelectorAll('.product-card,.collection-card,.story-section').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(26px)';el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el);});
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+setLang('fr');
+renderFilters();
+renderProducts('all');
+renderQuickReplies();
+updateIsabelleSVG('default');
+</script>
+</body>
+</html>
